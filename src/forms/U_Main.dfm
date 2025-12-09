@@ -12,18 +12,16 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   WindowState = wsMaximized
+  OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 1012
-    Height = 161
+    Height = 129
     Align = alTop
-    Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -32
-    ExplicitTop = 32
     object Label1: TLabel
       AlignWithMargins = True
       Left = 4
@@ -34,24 +32,27 @@ object Form1: TForm1
       Align = alTop
       Alignment = taCenter
       Caption = 'Clientes'
+      Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
+      ParentColor = False
       ParentFont = False
-      ExplicitWidth = 77
+      ExplicitLeft = 8
     end
     object SearchBox1: TSearchBox
       Left = 120
       Top = 70
       Width = 449
       Height = 23
+      BorderStyle = bsNone
       TabOrder = 0
       Text = 'SearchBox1'
     end
     object Button1: TButton
-      Left = 680
+      Left = 592
       Top = 69
       Width = 75
       Height = 25
@@ -67,13 +68,14 @@ object Form1: TForm1
     Align = alBottom
     Caption = 'Panel2'
     TabOrder = 1
-    ExplicitTop = 470
+    ExplicitTop = 456
+    ExplicitWidth = 1010
   end
   object Panel3: TPanel
     Left = 0
-    Top = 161
+    Top = 129
     Width = 1012
-    Height = 303
+    Height = 335
     Align = alClient
     Caption = 'Panel3'
     Font.Charset = DEFAULT_CHARSET
@@ -83,10 +85,29 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitLeft = 592
-    ExplicitTop = 328
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitTop = 161
+    ExplicitWidth = 1010
+    ExplicitHeight = 295
+    object Panel4: TPanel
+      Left = 826
+      Top = 1
+      Width = 185
+      Height = 333
+      Align = alRight
+      Caption = 'Panel4'
+      TabOrder = 0
+      ExplicitLeft = 328
+      ExplicitTop = 176
+      ExplicitHeight = 41
+    end
+    object ScrollBox1: TScrollBox
+      Left = 1
+      Top = 1
+      Width = 825
+      Height = 333
+      Align = alClient
+      TabOrder = 1
+    end
   end
   object MainMenu1: TMainMenu
     Left = 528
