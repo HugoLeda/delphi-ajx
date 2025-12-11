@@ -22,6 +22,7 @@ object Form1: TForm1
     Align = alTop
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1010
     object Label1: TLabel
       AlignWithMargins = True
       Left = 4
@@ -40,7 +41,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 8
+      ExplicitWidth = 77
     end
     object SearchBox1: TSearchBox
       Left = 120
@@ -85,9 +86,8 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitTop = 161
     ExplicitWidth = 1010
-    ExplicitHeight = 295
+    ExplicitHeight = 327
     object Panel4: TPanel
       Left = 826
       Top = 1
@@ -96,9 +96,8 @@ object Form1: TForm1
       Align = alRight
       Caption = 'Panel4'
       TabOrder = 0
-      ExplicitLeft = 328
-      ExplicitTop = 176
-      ExplicitHeight = 41
+      ExplicitLeft = 824
+      ExplicitHeight = 325
     end
     object ScrollBox1: TScrollBox
       Left = 1
@@ -107,6 +106,8 @@ object Form1: TForm1
       Height = 333
       Align = alClient
       TabOrder = 1
+      ExplicitWidth = 823
+      ExplicitHeight = 325
     end
   end
   object MainMenu1: TMainMenu

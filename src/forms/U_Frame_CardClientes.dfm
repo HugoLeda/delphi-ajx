@@ -1,54 +1,60 @@
 object CardCliente: TCardCliente
   Left = 0
   Top = 0
-  Width = 533
-  Height = 225
+  Width = 500
+  Height = 250
   Align = alBottom
   Color = clWhite
   ParentBackground = False
   ParentColor = False
   TabOrder = 0
-  object Label1: TLabel
-    Left = 80
-    Top = 48
-    Width = 51
-    Height = 15
+  object LbCliente: TLabel
+    Left = 10
+    Top = 10
+    Width = 94
+    Height = 28
     Caption = 'teste card'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
-  object Label2: TLabel
-    Left = 352
-    Top = 80
-    Width = 34
+  object LbValor: TLabel
+    Left = 400
+    Top = 10
+    Width = 39
     Height = 15
-    Caption = 'Label2'
+    Caption = 'LbValor'
   end
-  object Label3: TLabel
+  object LbNumero: TLabel
     Left = 392
     Top = 120
     Width = 34
     Height = 15
     Caption = 'Label2'
   end
-  object Label4: TLabel
+  object LbTelefone: TLabel
     Left = 312
     Top = 120
+    Width = 45
+    Height = 15
+    Caption = 'Telefone'
+  end
+  object LbEnderecoCliente: TLabel
+    Left = 10
+    Top = 65
     Width = 34
     Height = 15
     Caption = 'Label2'
   end
-  object Label5: TLabel
-    Left = 97
-    Top = 104
-    Width = 34
-    Height = 17
-    Caption = 'Label2'
-  end
-  object Label6: TLabel
-    Left = 416
-    Top = 32
-    Width = 34
+  object LbEndereco: TLabel
+    Left = 10
+    Top = 50
+    Width = 52
     Height = 15
-    Caption = 'Label2'
+    Caption = 'Endere'#231'o:'
   end
   object Panel1: TPanel
     Left = 56
@@ -94,7 +100,7 @@ object CardCliente: TCardCliente
       ExplicitLeft = -6
       ExplicitTop = -8
     end
-    object Label7: TLabel
+    object LbExcluir: TLabel
       AlignWithMargins = True
       Left = 52
       Top = 3
@@ -104,8 +110,8 @@ object CardCliente: TCardCliente
       Align = alClient
       Caption = 'Excluir'
       Layout = tlCenter
-      ExplicitLeft = 55
-      ExplicitTop = 19
+      ExplicitWidth = 34
+      ExplicitHeight = 15
     end
   end
 end

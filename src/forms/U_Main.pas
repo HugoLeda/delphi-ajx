@@ -47,7 +47,6 @@ var
 begin
   ScrollBox1.DestroyComponents;
 
-  // exemplo fictício de 5 cards
   for i := 1 to 5 do
   begin
     Card := TCardCliente.Create(Self);
@@ -59,8 +58,10 @@ begin
     Card.AlignWithMargins := True;
     Card.Margins.SetBounds(10, 10, 10, 0);
 
-    // preenche dados (exemplo)
-    Card.Label1.Caption := 'Cliente ' + i.ToString;
+    Card.LbCliente.Caption := 'Cliente ' + i.ToString;
+    Card.LbValor.Caption := 'R$ 250,00';
+    Card.LbNumero.Caption := '(14) 99999-9999';
+    Card.LbEnderecoCliente.Caption := 'Rua exemplo, número 08, Centro, Teste/SP';
   end;
 end;
 

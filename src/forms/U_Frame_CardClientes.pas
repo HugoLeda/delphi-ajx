@@ -9,15 +9,15 @@ uses
 
 type
   TCardCliente = class(TFrame)
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
+    LbCliente: TLabel;
+    LbValor: TLabel;
+    LbNumero: TLabel;
+    LbTelefone: TLabel;
+    LbEnderecoCliente: TLabel;
+    LbEndereco: TLabel;
     Panel1: TPanel;
     Image1: TImage;
-    Label7: TLabel;
+    LbExcluir: TLabel;
   private
     { Private declarations }
   public
