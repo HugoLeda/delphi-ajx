@@ -47,7 +47,7 @@ var
 begin
   ScrollBox1.DestroyComponents;
 
-  for i := 1 to 5 do
+  for i := 1 to 16 do
   begin
     Card := TCardCliente.Create(Self);
     Card.Parent := ScrollBox1;
@@ -58,7 +58,7 @@ begin
     Card.AlignWithMargins := True;
     Card.Margins.SetBounds(10, 10, 10, 0);
 
-    Card.LbCliente.Caption := 'Cliente ' + i.ToString;
+    Card.LbCliente.Caption := 'João Hugo Leda de Carvalho ' + i.ToString;
     Card.LbValor.Caption := 'R$ 250,00';
     Card.LbNumero.Caption := '(14) 99999-9999';
     Card.LbEnderecoCliente.Caption := 'Rua exemplo, número 08, Centro, Teste/SP';

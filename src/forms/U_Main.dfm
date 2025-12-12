@@ -89,24 +89,26 @@ object Form1: TForm1
     ExplicitWidth = 1010
     ExplicitHeight = 327
     object Panel4: TPanel
-      Left = 826
+      Left = 511
       Top = 1
-      Width = 185
+      Width = 500
       Height = 333
       Align = alRight
       Caption = 'Panel4'
+      Constraints.MaxWidth = 500
       TabOrder = 0
-      ExplicitLeft = 824
-      ExplicitHeight = 325
+      ExplicitLeft = 261
     end
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
-      Width = 825
+      Width = 510
       Height = 333
       Align = alClient
+      Color = clWhite
+      ParentColor = False
       TabOrder = 1
-      ExplicitWidth = 823
+      ExplicitWidth = 608
       ExplicitHeight = 325
     end
   end

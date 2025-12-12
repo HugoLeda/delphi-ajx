@@ -11,13 +11,22 @@ type
   TCardCliente = class(TFrame)
     LbCliente: TLabel;
     LbValor: TLabel;
-    LbNumero: TLabel;
-    LbTelefone: TLabel;
     LbEnderecoCliente: TLabel;
     LbEndereco: TLabel;
-    Panel1: TPanel;
+    PnExcluir: TPanel;
     Image1: TImage;
     LbExcluir: TLabel;
+    Panel2: TPanel;
+    LbTelefone: TLabel;
+    LbNumero: TLabel;
+    PnWhatsapp: TPanel;
+    Image2: TImage;
+    LbWhatsapp: TLabel;
+    PnEditar: TPanel;
+    Image3: TImage;
+    LbEditar: TLabel;
+    Panel3: TPanel;
+
   private
     { Private declarations }
   public
