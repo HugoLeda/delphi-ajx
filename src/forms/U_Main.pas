@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
-  Vcl.WinXCtrls, U_Frame_CardClientes;
+  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule;
 
 type
   TForm1 = class(TForm)
@@ -21,6 +21,7 @@ type
     Panel4: TPanel;
     ScrollBox1: TScrollBox;
     procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     procedure GerarCards;
@@ -34,6 +35,14 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  if DataModule1.FDConnection.Connected then
+    ShowMessage('Conexão com o banco OK (runtime x64)')
+  else
+    ShowMessage('Não conectado');
+end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin

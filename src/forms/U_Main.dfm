@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   WindowState = wsMaximized
+  OnCreate = FormCreate
   OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
@@ -97,7 +98,8 @@ object Form1: TForm1
       Caption = 'Panel4'
       Constraints.MaxWidth = 500
       TabOrder = 0
-      ExplicitLeft = 261
+      ExplicitLeft = 509
+      ExplicitHeight = 325
     end
     object ScrollBox1: TScrollBox
       Left = 1
@@ -108,7 +110,7 @@ object Form1: TForm1
       Color = clWhite
       ParentColor = False
       TabOrder = 1
-      ExplicitWidth = 608
+      ExplicitWidth = 508
       ExplicitHeight = 325
     end
   end
