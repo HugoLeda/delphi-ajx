@@ -122,6 +122,8 @@ object Form1: TForm1
     end
     object Servios1: TMenuItem
       Caption = 'Servi'#231'os'
+      ShortCut = 16467
+      OnClick = Servios1Click
     end
   end
 end

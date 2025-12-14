@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
-  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule;
+  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule, U_Servicos;
 
 type
   TForm1 = class(TForm)
@@ -22,6 +22,7 @@ type
     ScrollBox1: TScrollBox;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Servios1Click(Sender: TObject);
   private
     { Private declarations }
     procedure GerarCards;
@@ -56,23 +57,41 @@ var
 begin
   ScrollBox1.DestroyComponents;
 
-  for i := 1 to 16 do
+  DataModule1.AbrirCardClientes;
+
+  DataModule1.qryCardClientes.First;
+
+  i := 0;
+  while not DataModule1.qryCardClientes.Eof do
   begin
     Card := TCardCliente.Create(Self);
     Card.Parent := ScrollBox1;
 
+    i := i + 1;
     Card.Name := 'CardCliente_' + i.ToString;
 
     Card.Align := alTop;
     Card.AlignWithMargins := True;
     Card.Margins.SetBounds(10, 10, 10, 0);
 
-    Card.LbCliente.Caption := 'João Hugo Leda de Carvalho ' + i.ToString;
-    Card.LbValor.Caption := 'R$ 250,00';
-    Card.LbNumero.Caption := '(14) 99999-9999';
-    Card.LbEnderecoCliente.Caption := 'Rua exemplo, número 08, Centro, Teste/SP';
+    Card.LbCliente.Caption := DataModule1.qryCardClientes.FieldByName('CLIENTE_NOME').AsString;
+    Card.LbValor.Caption :=
+      FormatFloat('R$ ,0.00',
+        DataModule1.qryCardClientes.FieldByName('SALDO').AsFloat);
+    Card.LbNumero.Caption := DataModule1.qryCardClientes.FieldByName('TELEFONE').AsString;
+    Card.LbEnderecoCliente.Caption := DataModule1.qryCardClientes.FieldByName('ENDERECO').AsString;
+
+    DataModule1.qryCardClientes.Next;
   end;
 end;
 
+
+procedure TForm1.Servios1Click(Sender: TObject);
+begin
+  if not Assigned(frmServicos) then
+    frmServicos := TfrmServicos.Create(Application);
+
+  frmServicos.Show;
+end;
 
 end.

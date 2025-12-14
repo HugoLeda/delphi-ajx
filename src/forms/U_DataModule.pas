@@ -8,19 +8,25 @@ uses
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.VCLUI.Wait, FireDAC.Comp.UI, Data.DB, FireDAC.Comp.Client,
   FireDAC.Phys.MySQL, FireDAC.Phys.MSAccDef, FireDAC.Phys.ODBCBase,
-  FireDAC.Phys.MSAcc;
+  FireDAC.Phys.MSAcc, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
   TDataModule1 = class(TDataModule)
     FDConnection: TFDConnection;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     FDPhysMSAccessDriverLink1: TFDPhysMSAccessDriverLink;
+    qryCardClientes: TFDQuery;
+    qryClientes: TFDQuery;
+    qryServicos: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure Conectar;
+    procedure AbrirCardClientes;
+    procedure AbrirServicos;
   end;
 
 var
@@ -55,6 +61,17 @@ begin
   end;
 end;
 
+procedure TDataModule1.AbrirCardClientes;
+begin
+  if not qryCardClientes.Active then
+    qryCardClientes.Open;
+end;
+
+procedure TDataModule1.AbrirServicos;
+begin
+  if not qryServicos.Active then
+    qryServicos.Open;
+end;
 
 procedure TDataModule1.DataModuleCreate(Sender: TObject);
 begin

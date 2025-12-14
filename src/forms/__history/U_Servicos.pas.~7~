@@ -1,0 +1,41 @@
+unit U_Servicos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_DataModule, Data.DB, Vcl.Grids,
+  Vcl.DBGrids;
+
+type
+  TfrmServicos = class(TForm)
+    DBGridServicos: TDBGrid;
+    dsServicos: TDataSource;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmServicos: TfrmServicos;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmServicos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  frmServicos := nil;
+end;
+
+procedure TfrmServicos.FormShow(Sender: TObject);
+begin
+  DataModule1.AbrirServicos;
+
+end;
+
+end.
