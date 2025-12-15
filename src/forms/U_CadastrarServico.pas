@@ -1,0 +1,81 @@
+unit U_CadastrarServico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Mask, Vcl.Imaging.pngimage, U_DataModule;
+
+type
+  TfrmCadastrarServico = class(TForm)
+    btnSalvar: TPanel;
+    lbeNomeServico: TLabeledEdit;
+    imgAlertNome: TImage;
+    imgAlertDescricao: TImage;
+    lbeDescricaoServico: TLabeledEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+    function ValidarCampos: Boolean;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastrarServico: TfrmCadastrarServico;
+
+implementation
+
+{$R *.dfm}
+function TfrmCadastrarServico.ValidarCampos: Boolean;
+begin
+  Result := True;
+
+  imgAlertNome.Visible := False;
+  imgAlertDescricao.Visible := False;
+
+  if Trim(lbeNomeServico.Text) = '' then
+  begin
+    imgAlertNome.Visible := True;
+    Result := False;
+  end;
+
+  if Trim(lbeDescricaoServico.Text) = '' then
+  begin
+    imgAlertDescricao.Visible := True;
+    Result := False;
+  end;
+
+end;
+
+procedure TfrmCadastrarServico.btnSalvarClick(Sender: TObject);
+begin
+  if not ValidarCampos then
+    exit;
+
+  try
+    DataModule1.CadastrarServico(
+      lbeNomeServico.Text,
+      lbeDescricaoServico.Text
+    );
+
+    ShowMessage('Serviço cadastrado com sucesso!');
+
+    lbeNomeServico.Text := '';
+    lbeDescricaoServico.Text := '';
+
+  except
+    on E: Exception do
+      ShowMessage('Erro ao salvar serviço: ' + sLineBreak + E.Message);
+  end;
+end;
+
+procedure TfrmCadastrarServico.FormCreate(Sender: TObject);
+begin
+  imgAlertNome.Visible := False;
+  imgAlertDescricao.Visible := False;
+end;
+
+end.

@@ -5,14 +5,18 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_DataModule, Data.DB, Vcl.Grids,
-  Vcl.DBGrids;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, U_CadastrarServico;
 
 type
   TfrmServicos = class(TForm)
     DBGridServicos: TDBGrid;
     dsServicos: TDataSource;
+    LbQtdServicos: TLabel;
+    Panel1: TPanel;
+    btnAdicionarServico: TBitBtn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure btnAdicionarServicoClick(Sender: TObject);
   private
     { Private declarations }
     procedure ConfigurarGrid;
@@ -26,6 +30,14 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmServicos.btnAdicionarServicoClick(Sender: TObject);
+begin
+  if not Assigned(frmCadastrarServico) then
+    frmCadastrarServico := TfrmCadastrarServico.Create(Application);
+
+  frmCadastrarServico.Show;
+end;
 
 procedure TfrmServicos.ConfigurarGrid;
 begin
@@ -42,21 +54,21 @@ begin
   begin
     FieldName := 'NOME';
     Title.Caption := 'Serviço';
-    Width := 180;
+    Width := 250;
   end;
 
   with DBGridServicos.Columns.Add do
   begin
     FieldName := 'DESCRICAO';
     Title.Caption := 'Descrição';
-    Width := 300;
+    Width := 500;
   end;
 
   with DBGridServicos.Columns.Add do
   begin
     FieldName := 'DATA_CADASTRO';
     Title.Caption := 'Data de Cadastro';
-    Width := 140;
+    Width := 150;
   end;
 end;
 

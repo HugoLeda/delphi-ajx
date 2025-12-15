@@ -12,18 +12,18 @@ object DataModule1: TDataModule1
       'User_Name=root'
       'Password=SQLr00t!')
     LoginPrompt = False
-    Left = 248
-    Top = 176
+    Left = 80
+    Top = 144
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 312
-    Top = 80
+    Left = 160
+    Top = 24
   end
   object FDPhysMSAccessDriverLink1: TFDPhysMSAccessDriverLink
     VendorLib = 'C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\libmysql.dll'
-    Left = 136
-    Top = 72
+    Left = 32
+    Top = 16
   end
   object qryCardClientes: TFDQuery
     Connection = FDConnection
@@ -46,13 +46,13 @@ object DataModule1: TDataModule1
       '  c.ATIVO = 1'
       '  AND cc.ATIVO = 1'
       'ORDER BY c.NOME;')
-    Left = 328
-    Top = 256
+    Left = 80
+    Top = 232
   end
   object qryClientes: TFDQuery
     Connection = FDConnection
-    Left = 440
-    Top = 256
+    Left = 80
+    Top = 304
   end
   object qryServicos: TFDQuery
     Connection = FDConnection
@@ -63,7 +63,24 @@ object DataModule1: TDataModule1
       '    DESCRICAO,'
       '    DATE_FORMAT(DATA_CADASTRO, '#39'%d/%m/%Y'#39') AS DATA_CADASTRO'
       'FROM TB_SERVICOS;')
-    Left = 536
-    Top = 264
+    Left = 80
+    Top = 384
+  end
+  object qryCadastrarServico: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'INSERT INTO TB_SERVICOS (NOME, DESCRICAO)'
+      'VALUES (:NOME, :DESCRICAO);')
+    Left = 176
+    Top = 384
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DESCRICAO'
+        ParamType = ptInput
+      end>
   end
 end

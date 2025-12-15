@@ -1,0 +1,37 @@
+unit U_CadastrarServico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Mask, Vcl.Imaging.pngimage;
+
+type
+  TfrmCadastrarServico = class(TForm)
+    btnSalvar: TPanel;
+    lbeNomeServico: TLabeledEdit;
+    lbeDescricaoServico: TDBLabeledEdit;
+    imgAlertNome: TImage;
+    imgAlertDescricao: TImage;
+  private
+    { Private declarations }
+    procedure ValidarCampos;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastrarServico: TfrmCadastrarServico;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadastrarServico.ValidarCampos;
+begin
+  if lbeDescricaoServico.valu then
+
+end;
+
+end.

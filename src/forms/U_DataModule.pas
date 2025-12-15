@@ -19,6 +19,7 @@ type
     qryCardClientes: TFDQuery;
     qryClientes: TFDQuery;
     qryServicos: TFDQuery;
+    qryCadastrarServico: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -27,6 +28,7 @@ type
     procedure Conectar;
     procedure AbrirCardClientes;
     procedure AbrirServicos;
+    procedure CadastrarServico(const Nome, Descricao: string);
   end;
 
 var
@@ -37,6 +39,13 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+procedure TDataModule1.CadastrarServico(const Nome, Descricao: string);
+begin
+  qryCadastrarServico.Close;
+  qryCadastrarServico.ParamByName('NOME').AsString := Nome;
+  qryCadastrarServico.ParamByName('DESCRICAO').AsString := Descricao;
+  qryCadastrarServico.ExecSQL;
+end;
 
 procedure TDataModule1.Conectar;
 begin

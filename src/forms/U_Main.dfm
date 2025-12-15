@@ -45,16 +45,16 @@ object Form1: TForm1
       ExplicitWidth = 77
     end
     object SearchBox1: TSearchBox
-      Left = 120
+      Left = 240
       Top = 70
-      Width = 449
+      Width = 450
       Height = 23
       BorderStyle = bsNone
       TabOrder = 0
       Text = 'SearchBox1'
     end
     object Button1: TButton
-      Left = 592
+      Left = 700
       Top = 69
       Width = 75
       Height = 25

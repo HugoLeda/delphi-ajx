@@ -135,7 +135,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="forms\U_Servicos.pas">
-            <Form>Form3</Form>
+            <Form>frmServicos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="forms\U_Frame_CardClientes.pas">
@@ -147,6 +147,10 @@
             <Form>DataModule1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="forms\U_CadastrarServico.pas">
+            <Form>frmCadastrarServico</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
