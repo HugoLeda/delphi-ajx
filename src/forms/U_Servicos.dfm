@@ -21,13 +21,15 @@ object frmServicos: TfrmServicos
     Width = 804
     Height = 421
     Align = alClient
-    DataSource = dsServicos
+    DataSource = DataModule1.dsServicos
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnDblClick = DBGridServicosDblClick
   end
   object Panel1: TPanel
     Left = 0
@@ -64,15 +66,20 @@ object frmServicos: TfrmServicos
       Top = 0
       Width = 75
       Height = 40
-      Align = alLeft
+      Align = alCustom
       Caption = 'Novo'
       TabOrder = 0
       OnClick = btnAdicionarServicoClick
     end
-  end
-  object dsServicos: TDataSource
-    DataSet = DataModule1.qryServicos
-    Left = 24
-    Top = 40
+    object btnAtualizarServico: TBitBtn
+      Left = 80
+      Top = 0
+      Width = 75
+      Height = 40
+      Align = alCustom
+      Caption = 'Editar'
+      TabOrder = 1
+      OnClick = btnAtualizarServicoClick
+    end
   end
 end

@@ -18,9 +18,16 @@ type
     procedure btnSalvarClick(Sender: TObject);
   private
     { Private declarations }
+    FCodigoServico: Integer;
+    FModoEdicao: Boolean;
+
     function ValidarCampos: Boolean;
   public
     { Public declarations }
+    procedure EditarServico(
+      Codigo: Integer;
+      const ANome, ADescricao: string
+    );
   end;
 
 var
@@ -29,6 +36,7 @@ var
 implementation
 
 {$R *.dfm}
+
 function TfrmCadastrarServico.ValidarCampos: Boolean;
 begin
   Result := True;
@@ -50,21 +58,50 @@ begin
 
 end;
 
+procedure TfrmCadastrarServico.EditarServico(Codigo: Integer; const ANome: string; const ADescricao: string);
+begin
+  FCodigoServico := Codigo;
+  FModoEdicao := True;
+
+  lbeNomeServico.Text := ANome;
+  lbeDescricaoServico.Text := ADescricao;
+
+  Caption := 'Editar Serviço';
+end;
+
 procedure TfrmCadastrarServico.btnSalvarClick(Sender: TObject);
 begin
   if not ValidarCampos then
+  begin
+    ShowMessage('Preencha todos os campos!');
     exit;
+  end;
 
   try
-    DataModule1.CadastrarServico(
-      lbeNomeServico.Text,
-      lbeDescricaoServico.Text
-    );
+    if FModoEdicao then
+    begin
+      DataModule1.AtualizarServico(
+        FCodigoServico,
+        lbeNomeServico.Text,
+        lbeDescricaoServico.Text
+      );
 
-    ShowMessage('Serviço cadastrado com sucesso!');
+      ShowMessage('Serviço atualizado com sucesso!');
+    end
+    else
+    begin
+      DataModule1.CadastrarServico(
+        lbeNomeServico.Text,
+        lbeDescricaoServico.Text
+      );
+
+      ShowMessage('Serviço cadastrado com sucesso!');
+    end;
 
     lbeNomeServico.Text := '';
     lbeDescricaoServico.Text := '';
+
+    ModalResult := mrOk;
 
   except
     on E: Exception do
@@ -76,6 +113,9 @@ procedure TfrmCadastrarServico.FormCreate(Sender: TObject);
 begin
   imgAlertNome.Visible := False;
   imgAlertDescricao.Visible := False;
+
+  FModoEdicao := False;
+  FCodigoServico := 0;
 end;
 
 end.

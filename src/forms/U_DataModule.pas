@@ -20,6 +20,8 @@ type
     qryClientes: TFDQuery;
     qryServicos: TFDQuery;
     qryCadastrarServico: TFDQuery;
+    qryUpdateServico: TFDQuery;
+    dsServicos: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -29,6 +31,8 @@ type
     procedure AbrirCardClientes;
     procedure AbrirServicos;
     procedure CadastrarServico(const Nome, Descricao: string);
+    procedure AtualizarServico(ACodigo: Integer; const ANome, ADescricao: string);
+
   end;
 
 var
@@ -46,6 +50,16 @@ begin
   qryCadastrarServico.ParamByName('DESCRICAO').AsString := Descricao;
   qryCadastrarServico.ExecSQL;
 end;
+
+procedure TDataModule1.AtualizarServico(ACodigo: Integer; const ANome: string; const ADescricao: string);
+begin
+  qryUpdateServico.Close;
+  qryUpdateServico.ParamByName('CODIGO').AsInteger := ACodigo;
+  qryUpdateServico.ParamByName('NOME').AsString := ANome;
+  qryUpdateServico.ParamByName('DESCRICAO').AsString := ADescricao;
+  qryUpdateServico.ExecSQL;
+end;
+
 
 procedure TDataModule1.Conectar;
 begin
@@ -78,8 +92,8 @@ end;
 
 procedure TDataModule1.AbrirServicos;
 begin
-  if not qryServicos.Active then
-    qryServicos.Open;
+  qryServicos.Close;
+  qryServicos.Open;
 end;
 
 procedure TDataModule1.DataModuleCreate(Sender: TObject);

@@ -103,15 +103,14 @@ object frmCadastrarServico: TfrmCadastrarServico
     ParentBackground = False
     TabOrder = 0
     OnClick = btnSalvarClick
-    ExplicitLeft = 232
-    ExplicitTop = 144
-    ExplicitWidth = 185
+    ExplicitTop = 155
+    ExplicitWidth = 448
   end
   object lbeNomeServico: TLabeledEdit
     Left = 16
     Top = 40
     Width = 400
-    Height = 32
+    Height = 23
     EditLabel.Width = 91
     EditLabel.Height = 15
     EditLabel.Caption = 'Nome do Servi'#231'o'
@@ -122,7 +121,7 @@ object frmCadastrarServico: TfrmCadastrarServico
     Left = 17
     Top = 104
     Width = 400
-    Height = 32
+    Height = 23
     EditLabel.Width = 51
     EditLabel.Height = 15
     EditLabel.Caption = 'Descri'#231#227'o'

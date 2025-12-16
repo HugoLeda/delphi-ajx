@@ -83,4 +83,33 @@ object DataModule1: TDataModule1
         ParamType = ptInput
       end>
   end
+  object qryUpdateServico: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'UPDATE TB_SERVICOS'
+      'SET'
+      '  NOME = :NOME,'
+      '  DESCRICAO = :DESCRICAO'
+      'WHERE CODIGO = :CODIGO;')
+    Left = 296
+    Top = 384
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DESCRICAO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object dsServicos: TDataSource
+    DataSet = qryServicos
+    Left = 432
+    Top = 392
+  end
 end

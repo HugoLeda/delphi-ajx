@@ -10,13 +10,15 @@ uses
 type
   TfrmServicos = class(TForm)
     DBGridServicos: TDBGrid;
-    dsServicos: TDataSource;
     LbQtdServicos: TLabel;
     Panel1: TPanel;
     btnAdicionarServico: TBitBtn;
+    btnAtualizarServico: TBitBtn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnAdicionarServicoClick(Sender: TObject);
+    procedure btnAtualizarServicoClick(Sender: TObject);
+    procedure DBGridServicosDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure ConfigurarGrid;
@@ -32,11 +34,43 @@ implementation
 {$R *.dfm}
 
 procedure TfrmServicos.btnAdicionarServicoClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarServico;
 begin
-  if not Assigned(frmCadastrarServico) then
-    frmCadastrarServico := TfrmCadastrarServico.Create(Application);
+  Frm := TfrmCadastrarServico.Create(nil);
+  try
+    if Frm.ShowModal = mrOk then
+      DataModule1.AbrirServicos;
+  finally
+    Frm.Free;
+  end;
+end;
 
-  frmCadastrarServico.Show;
+procedure TfrmServicos.btnAtualizarServicoClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarServico;
+begin
+  if DataModule1.qryServicos.IsEmpty then
+  begin
+    ShowMessage('Selecione um serviço para editar');
+    Exit;
+  end;
+
+  Frm := TfrmCadastrarServico.Create(nil);
+  try
+    Frm.EditarServico(
+      DataModule1.qryServicos.FieldByName('CODIGO').AsInteger,
+      DataModule1.qryServicos.FieldByName('NOME').AsString,
+      DataModule1.qryServicos.FieldByName('DESCRICAO').AsString
+    );
+
+    if Frm.ShowModal = mrOk then
+      DataModule1.AbrirServicos;
+
+  finally
+    Frm.Free;
+  end;
+
 end;
 
 procedure TfrmServicos.ConfigurarGrid;
@@ -70,6 +104,11 @@ begin
     Title.Caption := 'Data de Cadastro';
     Width := 150;
   end;
+end;
+
+procedure TfrmServicos.DBGridServicosDblClick(Sender: TObject);
+begin
+  btnAtualizarServico.Click;
 end;
 
 procedure TfrmServicos.FormClose(Sender: TObject; var Action: TCloseAction);

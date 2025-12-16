@@ -1,0 +1,128 @@
+unit U_Servicos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_DataModule, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, U_CadastrarServico;
+
+type
+  TfrmServicos = class(TForm)
+    DBGridServicos: TDBGrid;
+    dsServicos: TDataSource;
+    LbQtdServicos: TLabel;
+    Panel1: TPanel;
+    btnAdicionarServico: TBitBtn;
+    btnAtualizarServico: TBitBtn;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure btnAdicionarServicoClick(Sender: TObject);
+    procedure btnAtualizarServicoClick(Sender: TObject);
+    procedure DBGridServicosDblClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure ConfigurarGrid;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmServicos: TfrmServicos;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmServicos.btnAdicionarServicoClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarServico;
+begin
+  Frm := TfrmCadastrarServico.Create(nil);
+  try
+    if Frm.ShowModal = mrOk then
+      DataModule1.AbrirServicos;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TfrmServicos.btnAtualizarServicoClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarServico;
+begin
+  if DataModule1.qryServicos.IsEmpty then
+  begin
+    ShowMessage('Selecione um serviço para editar');
+    Exit;
+  end;
+
+  Frm := TfrmCadastrarServico.Create(nil);
+  try
+    Frm.EditarServico(
+      DataModule1.qryServicos.FieldByName('CODIGO').AsInteger,
+      DataModule1.qryServicos.FieldByName('NOME').AsString,
+      DataModule1.qryServicos.FieldByName('DESCRICAO').AsString
+    );
+
+    if Frm.ShowModal = mrOk then
+      DataModule1.AbrirServicos;
+
+  finally
+    Frm.Free;
+  end;
+
+end;
+
+procedure TfrmServicos.ConfigurarGrid;
+begin
+  DBGridServicos.Columns.Clear;
+
+  with DBGridServicos.Columns.Add do
+  begin
+    FieldName := 'CODIGO';
+    Title.Caption := 'Código';
+    Width := 60;
+  end;
+
+  with DBGridServicos.Columns.Add do
+  begin
+    FieldName := 'NOME';
+    Title.Caption := 'Serviço';
+    Width := 250;
+  end;
+
+  with DBGridServicos.Columns.Add do
+  begin
+    FieldName := 'DESCRICAO';
+    Title.Caption := 'Descrição';
+    Width := 500;
+  end;
+
+  with DBGridServicos.Columns.Add do
+  begin
+    FieldName := 'DATA_CADASTRO';
+    Title.Caption := 'Data de Cadastro';
+    Width := 150;
+  end;
+end;
+
+procedure TfrmServicos.DBGridServicosDblClick(Sender: TObject);
+begin
+  btnAtualizarServico.Click;
+end;
+
+procedure TfrmServicos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  frmServicos := nil;
+end;
+
+procedure TfrmServicos.FormShow(Sender: TObject);
+begin
+  DataModule1.AbrirServicos;
+
+  ConfigurarGrid;
+end;
+
+end.
