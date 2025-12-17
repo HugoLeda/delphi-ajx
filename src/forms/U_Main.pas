@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
-  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule, U_Servicos;
+  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule, U_Servicos, U_Clientes;
 
 type
   TForm1 = class(TForm)
@@ -23,6 +23,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Servios1Click(Sender: TObject);
+    procedure Clientes1Click(Sender: TObject);
   private
     { Private declarations }
     procedure GerarCards;
@@ -36,6 +37,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.Clientes1Click(Sender: TObject);
+begin
+  frmCadastrarCliente.Show;
+end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin

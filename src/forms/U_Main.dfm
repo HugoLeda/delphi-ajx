@@ -119,6 +119,7 @@ object Form1: TForm1
     Top = 312
     object Clientes1: TMenuItem
       Caption = 'Clientes'
+      OnClick = Clientes1Click
     end
     object Servios1: TMenuItem
       Caption = 'Servi'#231'os'

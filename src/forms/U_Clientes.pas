@@ -4,10 +4,28 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
+  Vcl.ComCtrls;
 
 type
-  TForm2 = class(TForm)
+  TfrmCadastrarCliente = class(TForm)
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit5: TLabeledEdit;
+    MaskEdit1: TMaskEdit;
+    LabeledEdit6: TLabeledEdit;
+    LabeledEdit8: TLabeledEdit;
+    ComboBox1: TComboBox;
+    GroupBox1: TGroupBox;
+    RadioGroup1: TRadioGroup;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    GroupBox2: TGroupBox;
+    LabeledEdit9: TLabeledEdit;
+    DateTimePicker1: TDateTimePicker;
+    LabeledEdit2: TLabeledEdit;
+    LabeledEdit4: TLabeledEdit;
+    MaskEdit2: TMaskEdit;
+    Panel1: TPanel;
   private
     { Private declarations }
   public
@@ -15,7 +33,7 @@ type
   end;
 
 var
-  Form2: TForm2;
+  frmCadastrarCliente: TfrmCadastrarCliente;
 
 implementation
 
