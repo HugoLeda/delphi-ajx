@@ -30,12 +30,16 @@ object DataModule1: TDataModule1
     SQL.Strings = (
       'SELECT'
       '  c.CODIGO        AS CLIENTE_ID,'
-      '  c.NOME           AS CLIENTE_NOME,'
+      '  c.NOME          AS CLIENTE_NOME,'
       '  c.TELEFONE,'
-      '  c.ENDERECO,'
-      '  c.BAIRRO,'
-      '  c.ESTADO,'
       ''
+      '  c.LOGRADOURO,'
+      '  c.NUMERO,'
+      '  c.COMPLEMENTO,'
+      '  c.BAIRRO,'
+      '  c.CIDADE,'
+      ''
+      '  c.ESTADO,'
       '  cc.CODIGO       AS CARD_ID,'
       '  cc.VALOR        AS SALDO,'
       '  cc.ATIVO'
@@ -110,6 +114,6 @@ object DataModule1: TDataModule1
   object dsServicos: TDataSource
     DataSet = qryServicos
     Left = 432
-    Top = 392
+    Top = 384
   end
 end

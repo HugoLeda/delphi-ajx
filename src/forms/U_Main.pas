@@ -54,6 +54,7 @@ procedure TForm1.GerarCards;
 var
   i: Integer;
   Card: TCardCliente;
+  endereco: string;
 begin
   ScrollBox1.DestroyComponents;
 
@@ -79,8 +80,15 @@ begin
       FormatFloat('R$ ,0.00',
         DataModule1.qryCardClientes.FieldByName('SALDO').AsFloat);
     Card.LbNumero.Caption := DataModule1.qryCardClientes.FieldByName('TELEFONE').AsString;
-    Card.LbEnderecoCliente.Caption := DataModule1.qryCardClientes.FieldByName('ENDERECO').AsString;
 
+    endereco :=
+      DataModule1.qryCardClientes.FieldByName('LOGRADOURO').AsString + ', ' +
+      DataModule1.qryCardClientes.FieldByName('COMPLEMENTO').AsString + ', ' +
+      DataModule1.qryCardClientes.FieldByName('BAIRRO').AsString + ', ' +
+      DataModule1.qryCardClientes.FieldByName('CIDADE').AsString + '/' +
+      DataModule1.qryCardClientes.FieldByName('ESTADO').AsString;
+
+    Card.LbEnderecoCliente.Caption := endereco;
     DataModule1.qryCardClientes.Next;
   end;
 end;

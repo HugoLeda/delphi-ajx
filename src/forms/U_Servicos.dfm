@@ -46,21 +46,6 @@ object frmServicos: TfrmServicos
     ParentBackground = False
     TabOrder = 1
     ExplicitWidth = 802
-    object LbQtdServicos: TLabel
-      Left = 680
-      Top = 11
-      Width = 109
-      Height = 15
-      Align = alCustom
-      Alignment = taCenter
-      Caption = '1 a 10 de 10 registros'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-    end
     object btnAdicionarServico: TBitBtn
       Left = 0
       Top = 0

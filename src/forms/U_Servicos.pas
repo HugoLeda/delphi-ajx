@@ -10,7 +10,6 @@ uses
 type
   TfrmServicos = class(TForm)
     DBGridServicos: TDBGrid;
-    LbQtdServicos: TLabel;
     Panel1: TPanel;
     btnAdicionarServico: TBitBtn;
     btnAtualizarServico: TBitBtn;
