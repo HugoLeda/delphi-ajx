@@ -4,28 +4,16 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.WinXCtrls,
+  Vcl.ExtCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids;
 
 type
-  TfrmCadastrarCliente = class(TForm)
-    LabeledEdit1: TLabeledEdit;
-    LabeledEdit5: TLabeledEdit;
-    MaskEdit1: TMaskEdit;
-    LabeledEdit6: TLabeledEdit;
-    LabeledEdit8: TLabeledEdit;
-    ComboBox1: TComboBox;
-    GroupBox1: TGroupBox;
-    RadioGroup1: TRadioGroup;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    GroupBox2: TGroupBox;
-    LabeledEdit9: TLabeledEdit;
-    DateTimePicker1: TDateTimePicker;
-    LabeledEdit2: TLabeledEdit;
-    LabeledEdit4: TLabeledEdit;
-    MaskEdit2: TMaskEdit;
+  TfrmClientes = class(TForm)
     Panel1: TPanel;
+    SearchBox1: TSearchBox;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    DBGrid1: TDBGrid;
   private
     { Private declarations }
   public
@@ -33,7 +21,7 @@ type
   end;
 
 var
-  frmCadastrarCliente: TfrmCadastrarCliente;
+  frmClientes: TfrmClientes;
 
 implementation
 

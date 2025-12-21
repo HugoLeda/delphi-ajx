@@ -131,7 +131,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="forms\U_Clientes.pas">
-            <Form>Form2</Form>
+            <Form>frmCadastrarCliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="forms\U_Servicos.pas">

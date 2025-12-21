@@ -56,9 +56,9 @@ object Form1: TForm1
     object Button1: TButton
       Left = 700
       Top = 69
-      Width = 75
+      Width = 150
       Height = 25
-      Caption = 'Novo'
+      Caption = 'Novo lan'#231'amento'
       TabOrder = 1
     end
   end
@@ -89,27 +89,15 @@ object Form1: TForm1
     TabOrder = 2
     ExplicitWidth = 1010
     ExplicitHeight = 327
-    object Panel4: TPanel
-      Left = 511
-      Top = 1
-      Width = 500
-      Height = 333
-      Align = alRight
-      Caption = 'Panel4'
-      Constraints.MaxWidth = 500
-      TabOrder = 0
-      ExplicitLeft = 509
-      ExplicitHeight = 325
-    end
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
-      Width = 510
+      Width = 1010
       Height = 333
       Align = alClient
       Color = clWhite
       ParentColor = False
-      TabOrder = 1
+      TabOrder = 0
       ExplicitWidth = 508
       ExplicitHeight = 325
     end
