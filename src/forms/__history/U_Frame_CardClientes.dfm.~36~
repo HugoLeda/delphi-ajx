@@ -1,0 +1,133 @@
+object CardCliente: TCardCliente
+  Left = 0
+  Top = 0
+  Width = 501
+  Height = 200
+  Align = alBottom
+  Color = clWhite
+  ParentBackground = False
+  ParentColor = False
+  TabOrder = 0
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 501
+    Height = 200
+    Align = alClient
+    BorderStyle = bsSingle
+    Constraints.MaxHeight = 200
+    Constraints.MaxWidth = 501
+    ParentBackground = False
+    ParentColor = True
+    TabOrder = 0
+    object LbValor: TLabel
+      Left = 400
+      Top = 15
+      Width = 69
+      Height = 25
+      Caption = 'LbValor'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LbCliente: TLabel
+      Left = 15
+      Top = 15
+      Width = 270
+      Height = 28
+      Caption = 'Jo'#227'o Hugo Leda de Carvalho'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LbEndereco: TLabel
+      Left = 15
+      Top = 50
+      Width = 65
+      Height = 20
+      Caption = 'Endere'#231'o:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DDkShadow
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LbEnderecoCliente: TLabel
+      Left = 15
+      Top = 70
+      Width = 46
+      Height = 21
+      Caption = 'Label2'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LbTelefone: TLabel
+      Left = 15
+      Top = 100
+      Width = 60
+      Height = 20
+      Caption = 'Telefone:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DDkShadow
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LbNumero: TLabel
+      Left = 15
+      Top = 120
+      Width = 46
+      Height = 21
+      Caption = 'Label2'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Panel3: TPanel
+      Left = 0
+      Top = 150
+      Width = 489
+      Height = 35
+      BevelOuter = bvNone
+      Padding.Left = 15
+      Padding.Right = 15
+      ParentBackground = False
+      ParentColor = True
+      TabOrder = 0
+      object Button1: TButton
+        AlignWithMargins = True
+        Left = 18
+        Top = 3
+        Width = 75
+        Height = 29
+        Align = alLeft
+        Caption = 'Excluir'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        ExplicitLeft = 15
+        ExplicitTop = 0
+        ExplicitHeight = 30
+      end
+    end
+  end
+end

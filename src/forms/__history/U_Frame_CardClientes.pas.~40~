@@ -1,0 +1,94 @@
+unit U_Frame_CardClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, U_CadastrarCliente, U_DataModule;
+
+type
+  TCardCliente = class(TFrame)
+    LbCliente: TLabel;
+    LbValor: TLabel;
+    LbEnderecoCliente: TLabel;
+    LbEndereco: TLabel;
+    Panel2: TPanel;
+    LbTelefone: TLabel;
+    LbNumero: TLabel;
+    Panel3: TPanel;
+    btnExcluir: TButton;
+    btnEditar: TButton;
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    CodigoCliente: Integer;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TCardCliente.btnEditarClick(Sender: TObject);
+begin
+  if not Assigned(frmCadastrarCliente) then
+    frmCadastrarCliente := TfrmCadastrarCliente.Create(Application);
+
+  frmCadastrarCliente.ModoEdicao := True;
+  frmCadastrarCliente.EditarCliente(CodigoCliente);
+
+  frmCadastrarCliente.ShowModal;
+end;
+
+procedure TCardCliente.btnExcluirClick(Sender: TObject);
+var
+  Resp: Integer;
+begin
+  if StrToFloatDef(
+       StringReplace(LbValor.Caption, 'R$', '', [rfReplaceAll]).Trim,
+       -1
+     ) <> 0 then
+  begin
+    MessageDlg(
+      'Este card não pode ser excluído.' + sLineBreak +
+      'O saldo precisa estar zerado.',
+      mtWarning,
+      [mbOK],
+      0
+    );
+    Exit;
+  end;
+
+  Resp := MessageDlg(
+    'Tem certeza que deseja excluir este card?' + sLineBreak +
+    'Esta ação não poderá ser desfeita.',
+    mtConfirmation,
+    [mbYes, mbNo],
+    0
+  );
+
+  if Resp <> mrYes then
+    Exit;
+
+  try
+    DataModule1.InativarCardCliente(CodigoCliente);
+
+    MessageDlg(
+      'Card inativado com sucesso.',
+      mtInformation,
+      [mbOK],
+      0
+    );
+
+    Application.MainForm.Perform(WM_USER + 1, 0, 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
+  end;  DataModule1.InativarCardCliente(CodigoCliente);
+end;
+
+end.

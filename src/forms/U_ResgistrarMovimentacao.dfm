@@ -2,8 +2,8 @@ object frmRegistrarMovimentacao: TfrmRegistrarMovimentacao
   Left = 0
   Top = 0
   Caption = 'Registrar Movimento'
-  ClientHeight = 441
-  ClientWidth = 624
+  ClientHeight = 298
+  ClientWidth = 589
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,4 +11,104 @@ object frmRegistrarMovimentacao: TfrmRegistrarMovimentacao
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
+  object Label1: TLabel
+    Left = 20
+    Top = 168
+    Width = 95
+    Height = 15
+    Caption = 'Data de realiza'#231#227'o'
+  end
+  object Label2: TLabel
+    Left = 535
+    Top = 168
+    Width = 26
+    Height = 15
+    Caption = 'Valor'
+  end
+  object btnSalvar: TPanel
+    Left = 0
+    Top = 257
+    Width = 589
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    Caption = 'Salvar'
+    Color = 16762259
+    ParentBackground = False
+    TabOrder = 0
+    OnClick = btnSalvarClick
+    ExplicitLeft = 120
+    ExplicitTop = 240
+    ExplicitWidth = 185
+  end
+  object lbeCodigoCliente: TLabeledEdit
+    Left = 20
+    Top = 72
+    Width = 97
+    Height = 23
+    EditLabel.Width = 96
+    EditLabel.Height = 15
+    EditLabel.Caption = 'C'#243'digo do Cliente'
+    TabOrder = 1
+    Text = ''
+    OnExit = lbeCodigoClienteExit
+    OnKeyDown = lbeCodigoClienteKeyDown
+  end
+  object lbeNomeCliente: TLabeledEdit
+    Left = 136
+    Top = 72
+    Width = 425
+    Height = 23
+    EditLabel.Width = 90
+    EditLabel.Height = 15
+    EditLabel.Caption = 'Nome do Cliente'
+    ReadOnly = True
+    TabOrder = 2
+    Text = ''
+  end
+  object lbeCodigoServico: TLabeledEdit
+    Left = 20
+    Top = 128
+    Width = 97
+    Height = 23
+    EditLabel.Width = 97
+    EditLabel.Height = 15
+    EditLabel.Caption = 'C'#243'digo do Servi'#231'o'
+    TabOrder = 3
+    Text = ''
+    OnExit = lbeCodigoServicoExit
+    OnKeyDown = lbeCodigoServicoKeyDown
+  end
+  object lbeNomeServico: TLabeledEdit
+    Left = 136
+    Top = 128
+    Width = 425
+    Height = 23
+    EditLabel.Width = 38
+    EditLabel.Height = 15
+    EditLabel.Caption = 'Servi'#231'o'
+    ReadOnly = True
+    TabOrder = 4
+    Text = ''
+  end
+  object DateTimePicker1: TDateTimePicker
+    Left = 20
+    Top = 189
+    Width = 186
+    Height = 23
+    Date = 46013.000000000000000000
+    Time = 0.696825266204541500
+    TabOrder = 5
+  end
+  object edValor: TEdit
+    Left = 448
+    Top = 189
+    Width = 113
+    Height = 23
+    Alignment = taRightJustify
+    TabOrder = 6
+    Text = '0,00'
+    OnExit = edValorExit
+    OnKeyPress = edValorKeyPress
+  end
 end

@@ -1,0 +1,69 @@
+unit U_BuscaCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.WinXCtrls, Data.DB, U_DataModule,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmBuscaCliente = class(TForm)
+    sbBusca: TSearchBox;
+    ScrollBox1: TScrollBox;
+    DBGridClientes: TDBGrid;
+    procedure sbBuscaChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    procedure ConfigurarGrid;
+  public
+    { Public declarations }
+    CodigoSelecionado: Integer;
+    NomeSelecionado: string;
+  end;
+
+var
+  frmBuscaCliente: TfrmBuscaCliente;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmBuscaCliente.ConfigurarGrid;
+begin
+  DBGridClientes.Columns.Clear;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'CODIGO';
+    Title.Caption := 'Código';
+    Width := 60;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'NOME';
+    Title.Caption := 'Nome do Cliente';
+    Width := 340;
+  end;
+
+end;
+
+procedure TfrmBuscaCliente.FormShow(Sender: TObject);
+begin
+  ConfigurarGrid;
+
+  DataModule1.qryBuscaCliente.Close;
+  DataModule1.qryBuscaCliente.ParamByName('PESQUISA').AsString := '';
+  DataModule1.qryBuscaCliente.Open;
+end;
+
+procedure TfrmBuscaCliente.sbBuscaChange(Sender: TObject);
+begin
+  DataModule1.qryBuscaCliente.Close;
+  DataModule1.qryBuscaCliente.ParamByName('PESQUISA').AsString := '%' + sbBusca.Text + '%';
+  DataModule1.qryBuscaCliente.Open;
+end;
+
+end.

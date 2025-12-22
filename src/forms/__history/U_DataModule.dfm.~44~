@@ -1,0 +1,422 @@
+object DataModule1: TDataModule1
+  OnCreate = DataModuleCreate
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'DriverID=MySQL'
+      'Server=127.0.0.1'
+      'Port=3306'
+      'Database=delphi_ajx'
+      'User_Name=root'
+      'Password=SQLr00t!')
+    LoginPrompt = False
+    Left = 80
+    Top = 144
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 160
+    Top = 24
+  end
+  object FDPhysMSAccessDriverLink1: TFDPhysMSAccessDriverLink
+    VendorLib = 'C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\libmysql.dll'
+    Left = 32
+    Top = 16
+  end
+  object qryCardClientes: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  c.CODIGO        AS CLIENTE_ID,'
+      '  c.NOME          AS CLIENTE_NOME,'
+      '  c.TELEFONE,'
+      ''
+      '  c.LOGRADOURO,'
+      '  c.NUMERO,'
+      '  c.COMPLEMENTO,'
+      '  c.BAIRRO,'
+      '  c.CIDADE,'
+      ''
+      '  c.ESTADO,'
+      '  cc.CODIGO       AS CARD_ID,'
+      '  cc.VALOR        AS SALDO,'
+      '  cc.ATIVO'
+      'FROM TB_CLIENTES c'
+      'INNER JOIN TB_CARDCLIENTE cc'
+      '        ON cc.CLIENTE = c.CODIGO'
+      'WHERE'
+      '  c.ATIVO = 1'
+      '  AND cc.ATIVO = 1'
+      'ORDER BY c.NOME;')
+    Left = 80
+    Top = 232
+  end
+  object qryClientes: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '    C.CODIGO,'
+      '    C.NOME,'
+      '    C.CPF,'
+      '    C.TELEFONE,'
+      '    DATE_FORMAT(C.DNASC, '#39'%d/%m/%Y'#39') AS DATA_NASCIMENTO,'
+      '    C.SEXO,'
+      '    C.LOGRADOURO,'
+      '    C.NUMERO,'
+      '    C.COMPLEMENTO,'
+      '    C.BAIRRO,'
+      '    C.CIDADE,'
+      '    C.ESTADO,'
+      '    CASE C.ATIVO'
+      '        WHEN 1 THEN '#39'Ativo'#39
+      '        ELSE '#39'Inativo'#39
+      '    END AS STATUS'
+      'FROM TB_CLIENTES C'
+      'WHERE C.ATIVO = 1'
+      '  AND ('
+      '        C.NOME LIKE :PESQUISA'
+      '        OR C.CPF  LIKE :PESQUISA'
+      '      )'
+      'ORDER BY C.NOME;')
+    Left = 80
+    Top = 320
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
+  end
+  object qryServicos: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '    CODIGO,'
+      '    NOME,'
+      '    DESCRICAO,'
+      '    DATE_FORMAT(DATA_CADASTRO, '#39'%d/%m/%Y'#39') AS DATA_CADASTRO'
+      'FROM TB_SERVICOS;')
+    Left = 80
+    Top = 384
+  end
+  object qryCadastrarServico: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'INSERT INTO TB_SERVICOS (NOME, DESCRICAO)'
+      'VALUES (:NOME, :DESCRICAO);')
+    Left = 176
+    Top = 384
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DESCRICAO'
+        ParamType = ptInput
+      end>
+  end
+  object qryUpdateServico: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'UPDATE TB_SERVICOS'
+      'SET'
+      '  NOME = :NOME,'
+      '  DESCRICAO = :DESCRICAO'
+      'WHERE CODIGO = :CODIGO;')
+    Left = 296
+    Top = 384
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DESCRICAO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object dsServicos: TDataSource
+    DataSet = qryServicos
+    Left = 432
+    Top = 384
+  end
+  object dsClientes: TDataSource
+    DataSet = qryClientes
+    Left = 440
+    Top = 312
+  end
+  object qryCadastrarCliente: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'INSERT INTO TB_CLIENTES ('
+      '    NOME,'
+      '    CPF,'
+      '    TELEFONE,'
+      '    DNASC,'
+      '    SEXO,'
+      '    CEP,'
+      '    LOGRADOURO,'
+      '    NUMERO,'
+      '    COMPLEMENTO,'
+      '    BAIRRO,'
+      '    CIDADE,'
+      '    ESTADO,'
+      '    ATIVO'
+      ') VALUES ('
+      '    :NOME,'
+      '    :CPF,'
+      '    :TELEFONE,'
+      '    :DNASC,'
+      '    :SEXO,'
+      '    :CEP,'
+      '    :LOGRADOURO,'
+      '    :NUMERO,'
+      '    :COMPLEMENTO,'
+      '    :BAIRRO,'
+      '    :CIDADE,'
+      '    :ESTADO,'
+      '    1'
+      ');')
+    Left = 176
+    Top = 312
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CPF'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TELEFONE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DNASC'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SEXO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CEP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end>
+  end
+  object qryAlterarCliente: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'UPDATE TB_CLIENTES'
+      'SET'
+      '    NOME         = :NOME,'
+      '    TELEFONE  = :TELEFONE,'
+      '    DNASC       = :DNASC,'
+      '    SEXO         = :SEXO,'
+      '    CEP           = :CEP,'
+      '    LOGRADOURO  = :LOGRADOURO,'
+      '    NUMERO      = :NUMERO,'
+      '    COMPLEMENTO = :COMPLEMENTO,'
+      '    BAIRRO       = :BAIRRO,'
+      '    CIDADE       = :CIDADE,'
+      '    ESTADO      = :ESTADO'
+      'WHERE CODIGO = :CODIGO')
+    Left = 288
+    Top = 312
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TELEFONE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DNASC'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SEXO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CEP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object qryVerificarCPF: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT COUNT(*) AS QTD'
+      'FROM TB_CLIENTES'
+      'WHERE CPF = :CPF')
+    Left = 544
+    Top = 320
+    ParamData = <
+      item
+        Name = 'CPF'
+        ParamType = ptInput
+      end>
+  end
+  object qryDadosAlterarCliente: TFDQuery
+    Connection = FDConnection
+    Left = 664
+    Top = 328
+  end
+  object qryBuscaCliente: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_CLIENTES'
+      'WHERE ATIVO = 1'
+      '  AND ('
+      '    :PESQUISA = '#39#39
+      '    OR NOME LIKE :PESQUISA'
+      '  )'
+      'ORDER BY NOME')
+    Left = 80
+    Top = 488
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
+  end
+  object dsBuscaCliente: TDataSource
+    DataSet = qryBuscaCliente
+    Left = 192
+    Top = 488
+  end
+  object qryBuscaClienteCodigo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_CLIENTES'
+      'WHERE CODIGO = :CODIGO'
+      '  AND ATIVO = 1')
+    Left = 296
+    Top = 488
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object qryBuscaServico: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_SERVICOS'
+      'WHERE NOME LIKE :PESQUISA'
+      'ORDER BY NOME')
+    Left = 80
+    Top = 616
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
+  end
+  object qryBuscaServicoCodigo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_SERVICOS'
+      'WHERE CODIGO = :CODIGO')
+    Left = 296
+    Top = 608
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object dsBuscaServico: TDataSource
+    DataSet = qryBuscaServico
+    Left = 168
+    Top = 632
+  end
+  object qryBuscaCardAtivo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT CODIGO, VALOR'
+      'FROM TB_CARDCLIENTE'
+      'WHERE CLIENTE = :CLIENTE'
+      '  AND ATIVO = 1')
+    Left = 184
+    Top = 240
+    ParamData = <
+      item
+        Name = 'CLIENTE'
+        ParamType = ptInput
+      end>
+  end
+end

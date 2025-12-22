@@ -8,7 +8,10 @@ uses
   U_Frame_CardClientes in 'forms\U_Frame_CardClientes.pas' {CardCliente: TFrame},
   U_DataModule in 'forms\U_DataModule.pas' {DataModule1: TDataModule},
   U_CadastrarServico in 'forms\U_CadastrarServico.pas' {frmCadastrarServico},
-  U_Clientes in 'forms\U_Clientes.pas' {frmClientes};
+  U_Clientes in 'forms\U_Clientes.pas' {frmClientes},
+  U_ResgistrarMovimentacao in 'forms\U_ResgistrarMovimentacao.pas' {frmRegistrarMovimentacao},
+  U_BuscaCliente in 'U_BuscaCliente.pas' {frmBuscaCliente},
+  U_BuscaServico in 'forms\U_BuscaServico.pas' {frmBuscaServico};
 
 {$R *.res}
 
@@ -21,5 +24,8 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmCadastrarServico, frmCadastrarServico);
   Application.CreateForm(TfrmClientes, frmClientes);
+  Application.CreateForm(TfrmRegistrarMovimentacao, frmRegistrarMovimentacao);
+  Application.CreateForm(TfrmBuscaCliente, frmBuscaCliente);
+  Application.CreateForm(TfrmBuscaServico, frmBuscaServico);
   Application.Run;
 end.

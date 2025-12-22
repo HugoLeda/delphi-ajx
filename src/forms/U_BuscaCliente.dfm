@@ -1,0 +1,55 @@
+object frmBuscaCliente: TfrmBuscaCliente
+  Left = 0
+  Top = 0
+  Caption = 'Clientes'
+  ClientHeight = 427
+  ClientWidth = 384
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poMainFormCenter
+  OnShow = FormShow
+  TextHeight = 15
+  object sbBusca: TSearchBox
+    Left = 0
+    Top = 0
+    Width = 384
+    Height = 23
+    Align = alTop
+    TabOrder = 0
+    TextHint = 'Nome do Cliente'
+    OnChange = sbBuscaChange
+    ExplicitLeft = 320
+    ExplicitTop = 224
+    ExplicitWidth = 121
+  end
+  object ScrollBox1: TScrollBox
+    AlignWithMargins = True
+    Left = 3
+    Top = 26
+    Width = 378
+    Height = 398
+    Align = alClient
+    TabOrder = 1
+    ExplicitWidth = 491
+    object DBGridClientes: TDBGrid
+      Left = 0
+      Top = 0
+      Width = 374
+      Height = 394
+      Align = alClient
+      DataSource = DataModule1.dsBuscaCliente
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Segoe UI'
+      TitleFont.Style = []
+      OnDblClick = DBGridClientesDblClick
+      OnKeyPress = DBGridClientesKeyPress
+    end
+  end
+end

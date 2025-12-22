@@ -156,6 +156,18 @@
             <Form>frmClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="forms\U_ResgistrarMovimentacao.pas">
+            <Form>frmRegistrarMovimentacao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="U_BuscaCliente.pas">
+            <Form>frmBuscaCliente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="forms\U_BuscaServico.pas">
+            <Form>frmBuscaServico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

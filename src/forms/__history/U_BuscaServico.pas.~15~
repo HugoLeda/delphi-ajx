@@ -1,0 +1,98 @@
+unit U_BuscaServico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.WinXCtrls,
+  Data.DB, U_DataModule, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmBuscaServico = class(TForm)
+    sbBusca: TSearchBox;
+    ScrollBox1: TScrollBox;
+    DBGridServicos: TDBGrid;
+    procedure FormShow(Sender: TObject);
+    procedure sbBuscaChange(Sender: TObject);
+    procedure DBGridServicosDblClick(Sender: TObject);
+    procedure DBGridServicosKeyPress(Sender: TObject; var Key: Char);
+  private
+    procedure ConfigurarGrid;
+    procedure SelecionarServico;
+  public
+    CodigoSelecionado: Integer;
+    NomeSelecionado: string;
+  end;
+
+var
+  frmBuscaServico: TfrmBuscaServico;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmBuscaServico.ConfigurarGrid;
+begin
+  DBGridServicos.Columns.Clear;
+
+  with DBGridServicos.Columns.Add do
+  begin
+    FieldName := 'CODIGO';
+    Title.Caption := 'Código';
+    Width := 60;
+  end;
+
+  with DBGridServicos.Columns.Add do
+  begin
+    FieldName := 'NOME';
+    Title.Caption := 'Nome do Serviço';
+    Width := 340;
+  end;
+end;
+
+procedure TfrmBuscaServico.SelecionarServico;
+begin
+  if DataModule1.qryBuscaServico.IsEmpty then
+    Exit;
+
+  CodigoSelecionado := DataModule1.qryBuscaServico.FieldByName('CODIGO').AsInteger;
+  NomeSelecionado := DataModule1.qryBuscaServico.FieldByName('NOME').AsString;
+
+  ModalResult := mrOk;
+end;
+
+procedure TfrmBuscaServico.FormShow(Sender: TObject);
+begin
+  ConfigurarGrid;
+
+  DataModule1.qryBuscaServico.Close;
+  DataModule1.qryBuscaServico.ParamByName('PESQUISA').AsString := '%';
+  DataModule1.qryBuscaServico.Open;
+
+  sbBusca.SetFocus;
+end;
+
+procedure TfrmBuscaServico.sbBuscaChange(Sender: TObject);
+begin
+  DataModule1.qryBuscaServico.Close;
+  DataModule1.qryBuscaServico.ParamByName('PESQUISA').AsString :=
+    '%' + sbBusca.Text + '%';
+  DataModule1.qryBuscaServico.Open;
+end;
+
+procedure TfrmBuscaServico.DBGridServicosDblClick(Sender: TObject);
+begin
+  SelecionarServico;
+end;
+
+procedure TfrmBuscaServico.DBGridServicosKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    SelecionarServico;
+    Key := #0;
+  end;
+end;
+
+end.
+

@@ -2,32 +2,41 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2025/12/03 20:52:09.000.423,=C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/12/03 20:57:40.000.999,C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Main.dfm</Transaction>
-    <Transaction>2025/12/03 20:57:40.000.999,C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Main.pas</Transaction>
-    <Transaction>2025/12/03 20:57:58.000.658,C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Project1.dproj</Transaction>
+    <Transaction>2025/12/03 20:57:40.000.999,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Main.dfm=C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/12/03 20:57:40.000.999,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Main.pas=C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/12/03 20:57:58.000.658,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Project1.dproj=C:\Users\joaoh\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>2025/12/07 20:46:29.000.865,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
-    <Transaction>2025/12/07 20:47:27.000.376,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm</Transaction>
-    <Transaction>2025/12/07 20:47:27.000.376,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/07 20:47:27.000.376,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.pas</Transaction>
+    <Transaction>2025/12/07 20:47:27.000.376,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.dfm</Transaction>
     <Transaction>2025/12/07 20:53:25.000.516,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.pas</Transaction>
-    <Transaction>2025/12/07 20:54:05.000.490,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Servicos.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.pas</Transaction>
-    <Transaction>2025/12/07 20:54:05.000.490,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Servicos.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.dfm</Transaction>
+    <Transaction>2025/12/07 20:54:05.000.490,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Servicos.dfm</Transaction>
+    <Transaction>2025/12/07 20:54:05.000.490,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Servicos.pas</Transaction>
     <Transaction>2025/12/07 20:54:11.000.479,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit4.pas</Transaction>
     <Transaction>2025/12/08 20:09:00.000.310,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.pas</Transaction>
-    <Transaction>2025/12/08 20:09:46.000.593,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Frame_CardClientes.dfm</Transaction>
-    <Transaction>2025/12/08 20:09:46.000.593,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Frame_CardClientes.pas</Transaction>
+    <Transaction>2025/12/08 20:09:46.000.593,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Frame_CardClientes.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.dfm</Transaction>
+    <Transaction>2025/12/08 20:09:46.000.593,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Frame_CardClientes.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.pas</Transaction>
     <Transaction>2025/12/13 16:26:05.000.908,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.pas</Transaction>
-    <Transaction>2025/12/13 16:26:30.000.481,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_DataModule.dfm</Transaction>
-    <Transaction>2025/12/13 16:26:30.000.481,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_DataModule.pas</Transaction>
+    <Transaction>2025/12/13 16:26:30.000.481,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_DataModule.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.dfm</Transaction>
+    <Transaction>2025/12/13 16:26:30.000.481,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_DataModule.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit1.pas</Transaction>
     <Transaction>2025/12/14 21:28:11.000.155,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.pas</Transaction>
-    <Transaction>2025/12/14 21:28:53.000.808,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarServico.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.pas</Transaction>
-    <Transaction>2025/12/14 21:28:53.000.808,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarServico.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.dfm</Transaction>
-    <Transaction>2025/12/20 19:40:37.000.838,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.dfm</Transaction>
-    <Transaction>2025/12/20 19:40:37.000.838,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.pas</Transaction>
-    <Transaction>2025/12/20 19:41:08.000.265,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarCliente.pas</Transaction>
-    <Transaction>2025/12/20 19:41:08.000.265,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarCliente.dfm</Transaction>
+    <Transaction>2025/12/14 21:28:53.000.808,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarServico.pas</Transaction>
+    <Transaction>2025/12/14 21:28:53.000.808,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit3.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarServico.dfm</Transaction>
+    <Transaction>2025/12/20 19:40:37.000.838,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.dfm</Transaction>
+    <Transaction>2025/12/20 19:40:37.000.838,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.pas</Transaction>
+    <Transaction>2025/12/20 19:41:08.000.265,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarCliente.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.pas</Transaction>
+    <Transaction>2025/12/20 19:41:08.000.265,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarCliente.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_CadastrarClientes.dfm</Transaction>
     <Transaction>2025/12/20 19:45:44.000.117,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
-    <Transaction>2025/12/20 19:46:03.000.297,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.dfm</Transaction>
-    <Transaction>2025/12/20 19:46:03.000.297,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.pas</Transaction>
+    <Transaction>2025/12/20 19:46:03.000.297,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm</Transaction>
+    <Transaction>2025/12/20 19:46:03.000.297,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_Clientes.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 13:50:25.383,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 13:51:00.452,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_ResgistrarMovimentacao.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 13:51:00.452,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_ResgistrarMovimentacao.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm</Transaction>
+    <Transaction>2025/12/22 14:19:37.165,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 14:19:47.176,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\U_BuscaCliente.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 14:19:47.176,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\U_BuscaCliente.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm</Transaction>
+    <Transaction>2025/12/22 15:36:16.454,=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 15:36:31.970,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_BuscaServico.pas=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.pas</Transaction>
+    <Transaction>2025/12/22 15:36:31.970,C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\forms\U_BuscaServico.dfm=C:\Users\joaoh\Documents\GitHub\delphi-ajx\src\Unit2.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="forms"/>
@@ -35,15 +44,21 @@
     <File Path="forms\U_CadastrarCliente.dfm"/>
     <File Path="forms\U_CadastrarServico.pas"/>
     <File Path="forms\U_CadastrarServico.dfm"/>
+    <File Path="forms\U_Clientes.pas"/>
+    <File Path="forms\U_Clientes.dfm"/>
     <File Path="forms\U_DataModule.pas"/>
     <File Path="forms\U_DataModule.dfm"/>
     <File Path="forms\U_Frame_CardClientes.pas"/>
     <File Path="forms\U_Frame_CardClientes.dfm"/>
     <File Path="forms\U_Main.pas"/>
     <File Path="forms\U_Main.dfm"/>
+    <File Path="forms\U_ResgistrarMovimentacao.pas"/>
+    <File Path="forms\U_ResgistrarMovimentacao.dfm"/>
     <File Path="forms\U_Servicos.pas"/>
     <File Path="forms\U_Servicos.dfm"/>
-    <File Path="forms\U_Clientes.pas"/>
-    <File Path="forms\U_Clientes.dfm"/>
+    <File Path="forms\U_BuscaServico.pas"/>
+    <File Path="forms\U_BuscaServico.dfm"/>
+    <File Path="U_BuscaCliente.pas"/>
+    <File Path="U_BuscaCliente.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus,
-  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule, U_Servicos, U_CadastrarCliente, U_Clientes;
+  Vcl.WinXCtrls, U_Frame_CardClientes, U_DataModule, U_Servicos, U_CadastrarCliente, U_Clientes, U_ResgistrarMovimentacao;
 
 type
   TForm1 = class(TForm)
@@ -16,17 +16,20 @@ type
     MainMenu1: TMainMenu;
     Clientes1: TMenuItem;
     Servios1: TMenuItem;
-    SearchBox1: TSearchBox;
+    sbFiltrarCards: TSearchBox;
     Button1: TButton;
     ScrollBox1: TScrollBox;
     Listagem1: TMenuItem;
     Listagem2: TMenuItem;
     FlowPanel1: TFlowPanel;
+    Panel5: TPanel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Servios1Click(Sender: TObject);
     procedure Listagem2Click(Sender: TObject);
     procedure Listagem1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure sbFiltrarCardsChange(Sender: TObject);
   private
     { Private declarations }
     procedure GerarCards;
@@ -40,6 +43,14 @@ var
 implementation
 
 {$R *.dfm}
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  if not Assigned(frmRegistrarMovimentacao) then
+    frmRegistrarMovimentacao := TfrmRegistrarMovimentacao.Create(Application);
+
+  if frmRegistrarMovimentacao.ShowModal = mrOk then
+    GerarCards;
+end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
@@ -59,21 +70,31 @@ var
   i: Integer;
   Card: TCardCliente;
   endereco: string;
+  QtdCards: Integer;
+  ValorTotal: Currency;
 begin
-  ScrollBox1.DestroyComponents;
+  QtdCards := 0;
+  ValorTotal := 0;
 
-  DataModule1.AbrirCardClientes;
+  while FlowPanel1.ControlCount > 0 do
+    FlowPanel1.Controls[0].Free;
+
+  DataModule1.AbrirCardClientes(sbFiltrarCards.Text);
 
   DataModule1.qryCardClientes.First;
 
   i := 0;
   while not DataModule1.qryCardClientes.Eof do
   begin
+    Inc(QtdCards);
+    ValorTotal := ValorTotal + DataModule1.qryCardClientes.FieldByName('SALDO').AsCurrency;
+
     Card := TCardCliente.Create(Self);
     Card.Parent := FlowPanel1;
 
     i := i + 1;
     Card.Name := 'CardCliente_' + i.ToString;
+    Card.CodigoCliente := DataModule1.qryCardClientes.FieldByName('CLIENTE_ID').AsInteger;
 
     Card.Align := alTop;
     Card.AlignWithMargins := True;
@@ -95,6 +116,10 @@ begin
     Card.LbEnderecoCliente.Caption := endereco;
     DataModule1.qryCardClientes.Next;
   end;
+
+  Panel5.Caption :=
+    Format('Total de Registros: %d             Valor: R$ %s',
+      [QtdCards, FormatFloat(',0.00', ValorTotal)]);
 end;
 
 
@@ -106,6 +131,11 @@ end;
 procedure TForm1.Listagem2Click(Sender: TObject);
 begin
   frmCadastrarCliente.Show;
+end;
+
+procedure TForm1.sbFiltrarCardsChange(Sender: TObject);
+begin
+  GerarCards;
 end;
 
 procedure TForm1.Servios1Click(Sender: TObject);

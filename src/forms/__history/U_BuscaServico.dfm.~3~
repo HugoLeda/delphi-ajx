@@ -1,0 +1,27 @@
+object frmBuscaServico: TfrmBuscaServico
+  Left = 0
+  Top = 0
+  Caption = 'Buscar Servi'#231'os'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object sbBusca: TSearchBox
+    Left = 0
+    Top = 0
+    Width = 624
+    Height = 23
+    Align = alTop
+    TabOrder = 0
+    Text = 'Nome do Servi'#231'o'
+    TextHint = 'Nome do Servi'#231'o'
+    ExplicitLeft = 256
+    ExplicitTop = 112
+    ExplicitWidth = 121
+  end
+end

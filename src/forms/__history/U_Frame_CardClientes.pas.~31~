@@ -1,0 +1,54 @@
+unit U_Frame_CardClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, U_CadastrarCliente, U_DataModule;
+
+type
+  TCardCliente = class(TFrame)
+    LbCliente: TLabel;
+    LbValor: TLabel;
+    LbEnderecoCliente: TLabel;
+    LbEndereco: TLabel;
+    Panel2: TPanel;
+    LbTelefone: TLabel;
+    LbNumero: TLabel;
+    Panel3: TPanel;
+    btnExcluir: TButton;
+    btnEditar: TButton;
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    CodigoCliente: Integer;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TCardCliente.btnEditarClick(Sender: TObject);
+begin
+  if not Assigned(frmCadastrarCliente) then
+    frmCadastrarCliente := TfrmCadastrarCliente.Create(Application);
+
+  frmCadastrarCliente.ModoEdicao := True;
+  frmCadastrarCliente.EditarCliente(CodigoCliente);
+
+  frmCadastrarCliente.ShowModal;
+end;
+
+procedure TCardCliente.btnExcluirClick(Sender: TObject);
+var
+  Resp: Integer;
+begin
+  DataModule1.InativarCardCliente(CodigoCliente);
+end;
+
+end.

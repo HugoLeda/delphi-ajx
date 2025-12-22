@@ -1,0 +1,209 @@
+unit U_ResgistrarMovimentacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask, U_DataModule, U_BuscaCliente, U_BuscaServico,
+  Vcl.ComCtrls;
+
+type
+  TfrmRegistrarMovimentacao = class(TForm)
+    btnSalvar: TPanel;
+    lbeCodigoCliente: TLabeledEdit;
+    lbeNomeCliente: TLabeledEdit;
+    lbeCodigoServico: TLabeledEdit;
+    lbeNomeServico: TLabeledEdit;
+    DateTimePicker1: TDateTimePicker;
+    Label1: TLabel;
+    Label2: TLabel;
+    edValor: TEdit;
+    procedure lbeCodigoClienteKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure lbeCodigoClienteExit(Sender: TObject);
+    procedure lbeCodigoServicoExit(Sender: TObject);
+    procedure lbeCodigoServicoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edValorKeyPress(Sender: TObject; var Key: Char);
+    procedure edValorExit(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRegistrarMovimentacao: TfrmRegistrarMovimentacao;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmRegistrarMovimentacao.btnSalvarClick(Sender: TObject);
+var
+  CodigoCliente: Integer;
+  CodigoServico: Integer;
+  CodigoCard: Integer;
+  SaldoAtual, NovoSaldo: Currency;
+  TipoMov: Integer;
+  ValorMov: Currency;
+begin
+  CodigoCliente := StrToInt(lbeCodigoCliente.Text);
+  CodigoServico := StrToInt(lbeCodigoServico.Text);
+  ValorMov := StrToCurr(edValor.Text);
+
+  if ValorMov = 0 then
+    raise Exception.Create('O valor não pode ser zero');
+
+  if CodigoServico = 1 then
+    TipoMov := 0
+  else
+    TipoMov := 1;
+
+  if not DataModule1.ObterOuCriarCard(
+    CodigoCliente,
+    0,
+    CodigoCard,
+    SaldoAtual
+  ) then
+    raise Exception.Create('Erro ao obter card do cliente');
+
+  if TipoMov = 0 then
+    NovoSaldo := SaldoAtual - ValorMov
+  else
+    NovoSaldo := SaldoAtual + ValorMov;
+
+  DataModule1.qryInserirMovimentacao.Close;
+  DataModule1.qryInserirMovimentacao.ParamByName('CARD').AsInteger := CodigoCard;
+  DataModule1.qryInserirMovimentacao.ParamByName('SERVICO').AsInteger := CodigoServico;
+  DataModule1.qryInserirMovimentacao.ParamByName('TIPO').AsInteger := TipoMov;
+  DataModule1.qryInserirMovimentacao.ParamByName('VALOR').AsCurrency := ValorMov;
+  DataModule1.qryInserirMovimentacao.ParamByName('DATA').AsDate := Date;
+  DataModule1.qryInserirMovimentacao.ExecSQL;
+
+  DataModule1.qryAtualizaSaldo.Close;
+  DataModule1.qryAtualizaSaldo.ParamByName('CODIGO').AsInteger := CodigoCard;
+  DataModule1.qryAtualizaSaldo.ParamByName('VALOR').AsCurrency := NovoSaldo;
+  DataModule1.qryAtualizaSaldo.ExecSQL;
+end;
+
+procedure TfrmRegistrarMovimentacao.edValorExit(Sender: TObject);
+var
+  V: Currency;
+begin
+  if TryStrToCurr(edValor.Text, V) then
+    edValor.Text := FormatCurr('###,##0.00', V)
+  else
+    edValor.Text := '0,00';
+end;
+
+procedure TfrmRegistrarMovimentacao.edValorKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if not (Key in ['0'..'9', ',', #8]) then
+    Key := #0;
+
+  if (Key = ',') and (Pos(',', edValor.Text) > 0) then
+    Key := #0;
+end;
+
+procedure TfrmRegistrarMovimentacao.lbeCodigoClienteExit(Sender: TObject);
+var
+  Codigo: Integer;
+  Nome: string;
+begin
+  lbeNomeCliente.Clear;
+
+  if Trim(lbeCodigoCliente.Text) = '' then
+    Exit;
+
+  if not TryStrToInt(lbeCodigoCliente.Text, Codigo) then
+  begin
+    MessageDlg('Código do cliente inválido.', mtError, [mbOK], 0);
+    lbeCodigoCliente.Clear;
+    lbeCodigoCliente.SetFocus;
+    Exit;
+  end;
+
+  if not DataModule1.BuscaClienteCodigo(Codigo, Nome) then
+  begin
+    MessageDlg('Cliente não encontrado.', mtWarning, [mbOK], 0);
+    lbeCodigoCliente.Clear;
+    lbeCodigoCliente.SetFocus;
+    Exit;
+  end;
+
+  lbeNomeCliente.Text := Nome;
+end;
+
+procedure TfrmRegistrarMovimentacao.lbeCodigoClienteKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if Key = VK_F2 then
+  begin
+    frmBuscaCliente := TfrmBuscaCliente.Create(nil);
+    try
+      if frmBuscaCliente.ShowModal = mrOk then
+      begin
+        lbeCodigoCliente.Text := frmBuscaCliente.CodigoSelecionado.ToString;
+        lbeNomeCliente.Text   := frmBuscaCliente.NomeSelecionado;
+      end;
+    finally
+      frmBuscaCliente.Free;
+    end;
+    Key := 0;
+  end;
+
+end;
+
+procedure TfrmRegistrarMovimentacao.lbeCodigoServicoExit(Sender: TObject);
+var
+  Codigo: Integer;
+  Nome: string;
+begin
+  lbeNomeServico.Clear;
+
+  if Trim(lbeCodigoServico.Text) = '' then
+    Exit;
+
+  if not TryStrToInt(lbeCodigoServico.Text, Codigo) then
+  begin
+    MessageDlg('Código do serviço inválido.', mtError, [mbOK], 0);
+    lbeCodigoServico.Clear;
+    lbeCodigoServico.SetFocus;
+    Exit;
+  end;
+
+  if not DataModule1.BuscaServicoCodigo(Codigo, Nome) then
+  begin
+    MessageDlg('Serviço não encontrado.', mtWarning, [mbOK], 0);
+    lbeCodigoServico.Clear;
+    lbeCodigoServico.SetFocus;
+    Exit;
+  end;
+
+  lbeNomeServico.Text := Nome;
+end;
+
+procedure TfrmRegistrarMovimentacao.lbeCodigoServicoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if Key = VK_F2 then
+  begin
+    frmBuscaServico := TfrmBuscaServico.Create(nil);
+    try
+      if frmBuscaServico.ShowModal = mrOk then
+      begin
+        lbeCodigoServico.Text := frmBuscaServico.CodigoSelecionado.ToString;
+        lbeNomeServico.Text   := frmBuscaServico.NomeSelecionado;
+      end;
+    finally
+      frmBuscaServico.Free;
+    end;
+
+    Key := 0;
+  end;
+end;
+
+end.

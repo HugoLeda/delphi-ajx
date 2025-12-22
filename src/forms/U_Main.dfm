@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'AJX - Clientes'
-  ClientHeight = 562
+  ClientHeight = 564
   ClientWidth = 1012
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,20 +21,21 @@ object Form1: TForm1
     Width = 1012
     Height = 129
     Align = alTop
+    BevelOuter = bvNone
     ParentBackground = False
     TabOrder = 0
     ExplicitWidth = 1010
     object Label1: TLabel
       AlignWithMargins = True
-      Left = 4
-      Top = 16
-      Width = 1004
+      Left = 3
+      Top = 15
+      Width = 1006
       Height = 30
       Margins.Top = 15
       Align = alTop
       Alignment = taCenter
       Caption = 'Clientes'
-      Color = clBtnFace
+      Color = 8276224
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -42,43 +43,65 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
+      ExplicitLeft = 4
+      ExplicitTop = 16
       ExplicitWidth = 77
     end
-    object SearchBox1: TSearchBox
-      Left = 240
+    object sbFiltrarCards: TSearchBox
+      Left = 40
       Top = 70
       Width = 450
       Height = 23
       BorderStyle = bsNone
       TabOrder = 0
-      Text = 'SearchBox1'
+      TextHint = 'Buscar por nome'
+      OnChange = sbFiltrarCardsChange
     end
     object Button1: TButton
-      Left = 700
+      Left = 508
       Top = 69
       Width = 150
       Height = 25
       Caption = 'Novo lan'#231'amento'
       TabOrder = 1
+      OnClick = Button1Click
     end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 464
+    Top = 466
     Width = 1012
     Height = 98
     Align = alBottom
-    Caption = 'Panel2'
+    BevelOuter = bvNone
+    ParentBackground = False
     TabOrder = 1
     ExplicitTop = 456
     ExplicitWidth = 1010
+    object Panel5: TPanel
+      Left = 600
+      Top = 0
+      Width = 412
+      Height = 98
+      Align = alRight
+      BorderStyle = bsSingle
+      Caption = 'Panel5'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
   end
   object Panel3: TPanel
     Left = 0
     Top = 129
     Width = 1012
-    Height = 335
+    Height = 337
     Align = alClient
+    BevelOuter = bvNone
     Caption = 'Panel3'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -90,20 +113,23 @@ object Form1: TForm1
     ExplicitWidth = 1010
     ExplicitHeight = 327
     object ScrollBox1: TScrollBox
-      Left = 1
-      Top = 1
-      Width = 1010
-      Height = 333
+      Left = 0
+      Top = 0
+      Width = 1012
+      Height = 337
       Align = alClient
+      BevelOuter = bvNone
       Color = clWhite
       ParentColor = False
       TabOrder = 0
+      ExplicitLeft = 1
+      ExplicitTop = 1
       ExplicitWidth = 1008
       ExplicitHeight = 325
       object FlowPanel1: TFlowPanel
         Left = 0
         Top = 0
-        Width = 1006
+        Width = 1008
         Height = 329
         Align = alTop
         AutoSize = True

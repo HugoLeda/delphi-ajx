@@ -49,9 +49,15 @@ object DataModule1: TDataModule1
       'WHERE'
       '  c.ATIVO = 1'
       '  AND cc.ATIVO = 1'
+      '  AND c.NOME LIKE :PESQUISA'
       'ORDER BY c.NOME;')
     Left = 80
     Top = 232
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
   end
   object qryClientes: TFDQuery
     Connection = FDConnection
@@ -322,5 +328,183 @@ object DataModule1: TDataModule1
     Connection = FDConnection
     Left = 664
     Top = 328
+  end
+  object qryBuscaCliente: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_CLIENTES'
+      'WHERE ATIVO = 1'
+      '  AND ('
+      '    :PESQUISA = '#39#39
+      '    OR NOME LIKE :PESQUISA'
+      '  )'
+      'ORDER BY NOME')
+    Left = 80
+    Top = 488
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
+  end
+  object dsBuscaCliente: TDataSource
+    DataSet = qryBuscaCliente
+    Left = 192
+    Top = 488
+  end
+  object qryBuscaClienteCodigo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_CLIENTES'
+      'WHERE CODIGO = :CODIGO'
+      '  AND ATIVO = 1')
+    Left = 296
+    Top = 488
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object qryBuscaServico: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_SERVICOS'
+      'WHERE NOME LIKE :PESQUISA'
+      'ORDER BY NOME')
+    Left = 80
+    Top = 616
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
+  end
+  object qryBuscaServicoCodigo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '  CODIGO,'
+      '  NOME'
+      'FROM TB_SERVICOS'
+      'WHERE CODIGO = :CODIGO')
+    Left = 296
+    Top = 608
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object dsBuscaServico: TDataSource
+    DataSet = qryBuscaServico
+    Left = 168
+    Top = 632
+  end
+  object qryBuscaCardAtivo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT CODIGO, VALOR'
+      'FROM TB_CARDCLIENTE'
+      'WHERE CLIENTE = :CLIENTE'
+      '  AND ATIVO = 1')
+    Left = 184
+    Top = 240
+    ParamData = <
+      item
+        Name = 'CLIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object qryInserirMovimentacao: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'INSERT INTO TB_MOVIMENTACOESCLIENTE'
+      '(CARDCLIENTE, SERVICO, TIPO, VALOR, DATA)'
+      'VALUES'
+      '(:CARD, :SERVICO, :TIPO, :VALOR, :DATA)')
+    Left = 312
+    Top = 248
+    ParamData = <
+      item
+        Name = 'CARD'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SERVICO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TIPO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'VALOR'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DATA'
+        ParamType = ptInput
+      end>
+  end
+  object qryAtualizaSaldo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'UPDATE TB_CARDCLIENTE'
+      'SET VALOR = :VALOR'
+      'WHERE CODIGO = :CODIGO')
+    Left = 448
+    Top = 240
+    ParamData = <
+      item
+        Name = 'VALOR'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object qryCriarCard: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'INSERT INTO TB_CARDCLIENTE (CLIENTE, VALOR, ATIVO)'
+      'VALUES (:CLIENTE, :VALOR, 1)')
+    Left = 560
+    Top = 248
+    ParamData = <
+      item
+        Name = 'CLIENTE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'VALOR'
+        ParamType = ptInput
+      end>
+  end
+  object qryInativarCardCliente: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'UPDATE TB_CARDCLIENTE'
+      'SET ATIVO = 0'
+      'WHERE CODIGO = :CODIGO'
+      '  AND VALOR = 0'
+      '  AND ATIVO = 1')
+    Left = 680
+    Top = 256
+    ParamData = <
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
   end
 end
