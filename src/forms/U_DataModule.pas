@@ -25,6 +25,8 @@ type
     dsClientes: TDataSource;
     qryCadastrarCliente: TFDQuery;
     qryAlterarCliente: TFDQuery;
+    qryVerificarCPF: TFDQuery;
+    qryDadosAlterarCliente: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -40,8 +42,25 @@ type
       const Nome, CPF, Telefone: string;
       const DtNasc: TDate;
       const Sexo: Char;
+      const CEP: string;
       const Logradouro, Numero, Complemento, Bairro, Cidade, Estado: string
     );
+    procedure AlterarCliente(
+      Codigo: Integer;
+      const Nome: string;
+      const Telefone: string;
+      const DtNasc: TDate;
+      const Sexo: Char;
+      const CEP: string;
+      const Logradouro: string;
+      const Numero: string;
+      const Complemento: string;
+      const Bairro: string;
+      const Cidade: string;
+      const Estado: string
+    );
+
+    function CPFExiste(const CPF: string): Boolean;
   end;
 
 var
@@ -52,11 +71,25 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+function TDataModule1.CPFExiste(const CPF: string): Boolean;
+begin
+  qryVerificarCPF.Close;
+  qryVerificarCPF.ParamByName('CPF').AsString := CPF;
+  qryVerificarCPF.Open;
+
+  if qryVerificarCPF.FieldByName('QTD').AsInteger > 0 then
+    Result := True
+  else
+    Result := False;
+
+end;
+
+
 procedure TDataModule1.CadastrarCliente(
   const Nome: string; const CPF: string; const Telefone: string;
-  const DtNasc: TDate; const Sexo: Char; const Logradouro: string;
-  const Numero: string; const Complemento: string; const Bairro: string;
-  const Cidade: string; const Estado: string);
+  const DtNasc: TDate; const Sexo: Char; const CEP: string;
+  const Logradouro: string; const Numero: string; const Complemento: string;
+  const Bairro: string; const Cidade: string; const Estado: string);
 begin
   qryCadastrarCliente.Close;
 
@@ -65,6 +98,7 @@ begin
   qryCadastrarCliente.ParamByName('TELEFONE').AsString := Telefone;
   qryCadastrarCliente.ParamByName('DNASC').AsDate := DtNasc;
   qryCadastrarCliente.ParamByName('SEXO').AsString := Sexo;
+  qryCadastrarCliente.ParamByName('CEP').AsString := CEP;
   qryCadastrarCliente.ParamByName('LOGRADOURO').AsString := Logradouro;
   qryCadastrarCliente.ParamByName('NUMERO').AsString := Numero;
   qryCadastrarCliente.ParamByName('COMPLEMENTO').AsString := Complemento;
@@ -75,6 +109,29 @@ begin
   qryCadastrarCliente.ExecSQL;
 end;
 
+procedure TDataModule1.AlterarCliente(
+  Codigo: Integer; const Nome: string; const Telefone: string;
+  const DtNasc: TDate; const Sexo: Char; const CEP: string; const
+  Logradouro: string; const Numero: string; const Complemento: string;
+  const Bairro: string; const Cidade: string; const Estado: string);
+begin
+  qryAlterarCliente.Close;
+
+  qryAlterarCliente.ParamByName('CODIGO').AsInteger := Codigo;
+  qryAlterarCliente.ParamByName('NOME').AsString := Nome;
+  qryAlterarCliente.ParamByName('TELEFONE').AsString := Telefone;
+  qryAlterarCliente.ParamByName('DNASC').AsDate := DtNasc;
+  qryAlterarCliente.ParamByName('SEXO').AsString := Sexo;
+  qryAlterarCliente.ParamByName('CEP').AsString := CEP;
+  qryAlterarCliente.ParamByName('LOGRADOURO').AsString := Logradouro;
+  qryAlterarCliente.ParamByName('NUMERO').AsString := Numero;
+  qryAlterarCliente.ParamByName('COMPLEMENTO').AsString := Complemento;
+  qryAlterarCliente.ParamByName('BAIRRO').AsString := Bairro;
+  qryAlterarCliente.ParamByName('CIDADE').AsString := Cidade;
+  qryAlterarCliente.ParamByName('ESTADO').AsString := Estado;
+
+  qryAlterarCliente.ExecSQL;
+end;
 
 procedure TDataModule1.CadastrarServico(const Nome, Descricao: string);
 begin

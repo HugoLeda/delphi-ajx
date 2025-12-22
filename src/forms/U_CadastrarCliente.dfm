@@ -12,6 +12,8 @@ object frmCadastrarCliente: TfrmCadastrarCliente
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnShow = FormShow
   TextHeight = 15
   object gbDadosPessoais: TGroupBox
     Left = 0
@@ -68,7 +70,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Height = 25
       EditMask = '999.999.999-99;1'
       MaxLength = 14
-      TabOrder = 1
+      TabOrder = 2
       Text = '   .   .   -  '
       TextHint = '000.000.000-00'
       OnEnter = meCPFEnter
@@ -79,7 +81,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Width = 171
       Height = 85
       Caption = 'Sexo'
-      TabOrder = 2
+      TabOrder = 4
     end
     object rbMasculino: TRadioButton
       Left = 288
@@ -87,7 +89,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Width = 81
       Height = 17
       Caption = 'Masculino'
-      TabOrder = 3
+      TabOrder = 5
     end
     object rbFeminino: TRadioButton
       Left = 288
@@ -95,7 +97,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Width = 73
       Height = 17
       Caption = 'Feminino'
-      TabOrder = 4
+      TabOrder = 6
     end
     object dtpNascimento: TDateTimePicker
       Left = 332
@@ -104,7 +106,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Height = 25
       Date = 46008.000000000000000000
       Time = 0.000646967593638692
-      TabOrder = 5
+      TabOrder = 1
     end
     object lbeTelefone: TLabeledEdit
       Left = 45
@@ -114,7 +116,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       EditLabel.Width = 49
       EditLabel.Height = 17
       EditLabel.Caption = 'Telefone'
-      TabOrder = 6
+      TabOrder = 3
       Text = ''
       TextHint = '(99) 99999-9999'
     end

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.WinXCtrls,
-  Vcl.ExtCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids, U_DataModule;
+  Vcl.ExtCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids, U_DataModule, U_CadastrarCliente;
 
 type
   TfrmClientes = class(TForm)
@@ -16,6 +16,9 @@ type
     DBGridClientes: TDBGrid;
     procedure FormShow(Sender: TObject);
     procedure searchClienteChange(Sender: TObject);
+    procedure btnAdicionarClienteClick(Sender: TObject);
+    procedure btnEditarClienteClick(Sender: TObject);
+    procedure DBGridClientesDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure ConfigurarGrid;
@@ -29,6 +32,43 @@ var
 implementation
 
 {$R *.dfm}
+procedure TfrmClientes.btnAdicionarClienteClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarCliente;
+begin
+  Frm := TfrmCadastrarCliente.Create(nil);
+  try
+    Frm.NovoCliente;
+    if Frm.ShowModal = mrOk then
+      DataModule1.AbrirClientes(searchCliente.Text);
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TfrmClientes.btnEditarClienteClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarCliente;
+begin
+  if DataModule1.qryClientes.IsEmpty then
+  begin
+    ShowMessage('Selecione um cliente');
+    Exit;
+  end;
+
+  Frm := TfrmCadastrarCliente.Create(nil);
+  try
+    Frm.EditarCliente(
+      DataModule1.qryClientes.FieldByName('CODIGO').AsInteger
+    );
+
+    if Frm.ShowModal = mrOk then
+      DataModule1.AbrirClientes(searchCliente.Text);
+  finally
+    Frm.Free;
+  end;
+end;
+
 procedure TfrmClientes.ConfigurarGrid;
 begin
   DBGridClientes.Columns.Clear;
@@ -128,6 +168,11 @@ begin
 end;
 
 
+
+procedure TfrmClientes.DBGridClientesDblClick(Sender: TObject);
+begin
+  btnEditarCliente.Click;
+end;
 
 procedure TfrmClientes.FormShow(Sender: TObject);
 begin

@@ -1,0 +1,157 @@
+unit U_Clientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.WinXCtrls,
+  Vcl.ExtCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids, U_DataModule, U_CadastrarCliente;
+
+type
+  TfrmClientes = class(TForm)
+    Panel1: TPanel;
+    searchCliente: TSearchBox;
+    btnEditarCliente: TBitBtn;
+    btnAdicionarCliente: TBitBtn;
+    DBGridClientes: TDBGrid;
+    procedure FormShow(Sender: TObject);
+    procedure searchClienteChange(Sender: TObject);
+    procedure btnAdicionarClienteClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure ConfigurarGrid;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmClientes: TfrmClientes;
+
+implementation
+
+{$R *.dfm}
+procedure TfrmClientes.btnAdicionarClienteClick(Sender: TObject);
+var
+  Frm: TfrmCadastrarCliente;
+begin
+  Frm := TfrmCadastrarCliente.Create(nil);
+  try
+    Frm.NovoCliente;
+  finally
+
+  end;
+end;
+
+procedure TfrmClientes.ConfigurarGrid;
+begin
+  DBGridClientes.Columns.Clear;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'CODIGO';
+    Title.Caption := 'Código';
+    Width := 60;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'NOME';
+    Title.Caption := 'Cliente';
+    Width := 220;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'CPF';
+    Title.Caption := 'CPF';
+    Width := 110;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'TELEFONE';
+    Title.Caption := 'Telefone';
+    Width := 120;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'DATA_NASCIMENTO';
+    Title.Caption := 'Nascimento';
+    Width := 110;
+    Visible := False;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'SEXO';
+    Title.Caption := 'Sexo';
+    Width := 60;
+    Visible := False;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'LOGRADOURO';
+    Title.Caption := 'Logradouro';
+    Width := 250;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'NUMERO';
+    Title.Caption := 'Número';
+    Width := 80;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'COMPLEMENTO';
+    Title.Caption := 'Complemento';
+    Width := 150;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'BAIRRO';
+    Title.Caption := 'Bairro';
+    Width := 150;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'CIDADE';
+    Title.Caption := 'Cidade';
+    Width := 150;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'ESTADO';
+    Title.Caption := 'UF';
+    Width := 50;
+  end;
+
+  with DBGridClientes.Columns.Add do
+  begin
+    FieldName := 'STATUS';
+    Title.Caption := 'Status';
+    Width := 80;
+  end;
+end;
+
+
+
+procedure TfrmClientes.FormShow(Sender: TObject);
+begin
+  DataModule1.AbrirClientes('');
+
+  ConfigurarGrid;
+end;
+
+procedure TfrmClientes.searchClienteChange(Sender: TObject);
+begin
+  DataModule1.AbrirClientes(searchCliente.Text);
+end;
+
+end.

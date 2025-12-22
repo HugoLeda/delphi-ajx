@@ -160,6 +160,7 @@ object DataModule1: TDataModule1
       '    TELEFONE,'
       '    DNASC,'
       '    SEXO,'
+      '    CEP,'
       '    LOGRADOURO,'
       '    NUMERO,'
       '    COMPLEMENTO,'
@@ -173,6 +174,7 @@ object DataModule1: TDataModule1
       '    :TELEFONE,'
       '    :DNASC,'
       '    :SEXO,'
+      '    :CEP,'
       '    :LOGRADOURO,'
       '    :NUMERO,'
       '    :COMPLEMENTO,'
@@ -205,6 +207,10 @@ object DataModule1: TDataModule1
         ParamType = ptInput
       end
       item
+        Name = 'CEP'
+        ParamType = ptInput
+      end
+      item
         Name = 'LOGRADOURO'
         ParamType = ptInput
       end
@@ -231,7 +237,90 @@ object DataModule1: TDataModule1
   end
   object qryAlterarCliente: TFDQuery
     Connection = FDConnection
+    SQL.Strings = (
+      'UPDATE TB_CLIENTES'
+      'SET'
+      '    NOME         = :NOME,'
+      '    TELEFONE  = :TELEFONE,'
+      '    DNASC       = :DNASC,'
+      '    SEXO         = :SEXO,'
+      '    CEP           = :CEP,'
+      '    LOGRADOURO  = :LOGRADOURO,'
+      '    NUMERO      = :NUMERO,'
+      '    COMPLEMENTO = :COMPLEMENTO,'
+      '    BAIRRO       = :BAIRRO,'
+      '    CIDADE       = :CIDADE,'
+      '    ESTADO      = :ESTADO'
+      'WHERE CODIGO = :CODIGO')
     Left = 288
     Top = 312
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TELEFONE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DNASC'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SEXO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CEP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end>
+  end
+  object qryVerificarCPF: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT COUNT(*) AS QTD'
+      'FROM TB_CLIENTES'
+      'WHERE CPF = :CPF')
+    Left = 544
+    Top = 320
+    ParamData = <
+      item
+        Name = 'CPF'
+        ParamType = ptInput
+      end>
+  end
+  object qryDadosAlterarCliente: TFDQuery
+    Connection = FDConnection
+    Left = 664
+    Top = 328
   end
 end

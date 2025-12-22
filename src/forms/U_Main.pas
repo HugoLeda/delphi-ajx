@@ -21,6 +21,7 @@ type
     ScrollBox1: TScrollBox;
     Listagem1: TMenuItem;
     Listagem2: TMenuItem;
+    FlowPanel1: TFlowPanel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Servios1Click(Sender: TObject);
@@ -69,7 +70,7 @@ begin
   while not DataModule1.qryCardClientes.Eof do
   begin
     Card := TCardCliente.Create(Self);
-    Card.Parent := ScrollBox1;
+    Card.Parent := FlowPanel1;
 
     i := i + 1;
     Card.Name := 'CardCliente_' + i.ToString;

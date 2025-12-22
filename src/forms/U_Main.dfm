@@ -100,6 +100,18 @@ object Form1: TForm1
       TabOrder = 0
       ExplicitWidth = 1008
       ExplicitHeight = 325
+      object FlowPanel1: TFlowPanel
+        Left = 0
+        Top = 0
+        Width = 1006
+        Height = 329
+        Align = alTop
+        AutoSize = True
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitLeft = 100
+        ExplicitWidth = 800
+      end
     end
   end
   object MainMenu1: TMainMenu

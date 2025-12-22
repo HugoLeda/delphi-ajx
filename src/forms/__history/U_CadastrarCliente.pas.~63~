@@ -1,0 +1,269 @@
+unit U_CadastrarCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, U_DataModule,
+  Vcl.ComCtrls;
+
+type
+  TfrmCadastrarCliente = class(TForm)
+    lbeNome: TLabeledEdit;
+    lbeBairro: TLabeledEdit;
+    meCPF: TMaskEdit;
+    lbeLogradouro: TLabeledEdit;
+    lbeNumero: TLabeledEdit;
+    cbUF: TComboBox;
+    gbDadosPessoais: TGroupBox;
+    rgSexo: TRadioGroup;
+    rbMasculino: TRadioButton;
+    rbFeminino: TRadioButton;
+    gbEndereco: TGroupBox;
+    lbeComplemento: TLabeledEdit;
+    dtpNascimento: TDateTimePicker;
+    lbeTelefone: TLabeledEdit;
+    lbeCidade: TLabeledEdit;
+    meCEP: TMaskEdit;
+    btnSalvar: TPanel;
+    lbCPF: TLabel;
+    Label1: TLabel;
+    lbCEP: TLabel;
+    Label2: TLabel;
+    procedure meCPFEnter(Sender: TObject);
+    procedure meCEPEnter(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    CodigoCliente: Integer;
+    ModoEdicao: Boolean;
+    procedure LimparCampos;
+    procedure ConfigurarTabOrder;
+  public
+    { Public declarations }
+    procedure NovoCliente;
+    procedure EditarCliente(Codigo: Integer);
+  end;
+
+var
+  frmCadastrarCliente: TfrmCadastrarCliente;
+
+implementation
+
+{$R *.dfm}
+procedure TfrmCadastrarCliente.NovoCliente;
+begin
+  ModoEdicao := False;
+  CodigoCliente := 0;
+
+  Caption := 'Cadastrar Cliente';
+  LimparCampos;
+end;
+
+procedure TfrmCadastrarCliente.EditarCliente(Codigo: Integer);
+begin
+  ModoEdicao := True;
+  CodigoCliente := Codigo;
+
+  Caption := 'Editar Cliente';
+
+  DataModule1.qryDadosAlterarCliente.Close;
+  DataModule1.qryDadosAlterarCliente.SQL.Text :=
+    'SELECT * FROM TB_CLIENTES WHERE CODIGO = :CODIGO';
+  DataModule1.qryDadosAlterarCliente.ParamByName('CODIGO').AsInteger := Codigo;
+  DataModule1.qryDadosAlterarCliente.Open;
+
+  lbeNome.Text        := DataModule1.qryDadosAlterarCliente.FieldByName('NOME').AsString;
+  meCPF.Text          := DataModule1.qryDadosAlterarCliente.FieldByName('CPF').AsString;
+  lbeTelefone.Text    := DataModule1.qryDadosAlterarCliente.FieldByName('TELEFONE').AsString;
+  dtpNascimento.Date  := DataModule1.qryDadosAlterarCliente.FieldByName('DNASC').AsDateTime;
+
+  if DataModule1.qryDadosAlterarCliente.FieldByName('SEXO').AsString = 'M' then
+    rbMasculino.Checked := True
+  else
+    rbFeminino.Checked := True;
+
+  meCEP.Text          := DataModule1.qryDadosAlterarCliente.FieldByName('CEP').AsString;
+  lbeLogradouro.Text  := DataModule1.qryDadosAlterarCliente.FieldByName('LOGRADOURO').AsString;
+  lbeNumero.Text      := DataModule1.qryDadosAlterarCliente.FieldByName('NUMERO').AsString;
+  lbeComplemento.Text := DataModule1.qryDadosAlterarCliente.FieldByName('COMPLEMENTO').AsString;
+  lbeBairro.Text      := DataModule1.qryDadosAlterarCliente.FieldByName('BAIRRO').AsString;
+  lbeCidade.Text      := DataModule1.qryDadosAlterarCliente.FieldByName('CIDADE').AsString;
+  cbUF.Text           := DataModule1.qryDadosAlterarCliente.FieldByName('ESTADO').AsString;
+
+  meCPF.Enabled := False;
+end;
+
+procedure TfrmCadastrarCliente.ConfigurarTabOrder;
+var
+  I: Integer;
+begin
+  I := 0;
+
+  lbeNome.TabOrder         := I; Inc(I);
+  dtpNascimento.TabOrder   := I; Inc(I);
+  meCPF.TabOrder           := I; Inc(I);
+  lbeTelefone.TabOrder     := I; Inc(I);
+
+  rbMasculino.TabOrder     := I; Inc(I);
+  rbFeminino.TabOrder      := I; Inc(I);
+
+  meCEP.TabOrder           := I; Inc(I);
+  lbeCidade.TabOrder       := I; Inc(I);
+  cbUF.TabOrder            := I; Inc(I);
+
+  lbeLogradouro.TabOrder   := I; Inc(I);
+  lbeNumero.TabOrder       := I; Inc(I);
+  lbeBairro.TabOrder       := I; Inc(I);
+  lbeComplemento.TabOrder  := I; Inc(I);
+
+  btnSalvar.TabOrder       := I;
+end;
+
+procedure TfrmCadastrarCliente.FormCreate(Sender: TObject);
+begin
+  ConfigurarTabOrder;
+end;
+
+procedure TfrmCadastrarCliente.FormShow(Sender: TObject);
+begin
+  lbeNome.SetFocus;
+end;
+
+procedure TfrmCadastrarCliente.LimparCampos;
+begin
+  lbeNome.Clear;
+  meCPF.Clear;
+  lbeTelefone.Clear;
+
+  dtpNascimento.Date := Date;
+
+  rbMasculino.Checked := False;
+  rbFeminino.Checked := False;
+
+  lbeLogradouro.Clear;
+  lbeNumero.Clear;
+  lbeComplemento.Clear;
+  lbeBairro.Clear;
+  lbeCidade.Clear;
+  cbUF.ItemIndex := -1;
+
+  meCEP.Clear;
+end;
+
+procedure TfrmCadastrarCliente.btnSalvarClick(Sender: TObject);
+var
+  sexo: Char;
+  CPF: string;
+  CEP: string;
+begin
+
+  try
+    if Trim(lbeNome.Text) = '' then
+      raise Exception.Create('Informe o Nome');
+
+    CPF := meCPF.Text;
+    CPF := StringReplace(CPF, '.', '', [rfReplaceAll]);
+    CPF := StringReplace(CPF, '-', '', [rfReplaceAll]);
+    CPF := StringReplace(CPF, '_', '', [rfReplaceAll]);
+    CPF := Trim(CPF);
+
+    CEP := meCEP.Text;
+    CEP := StringReplace(CEP, '.', '', [rfReplaceAll]);
+    CEP := StringReplace(CEP, '-', '', [rfReplaceAll]);
+    CEP := StringReplace(CEP, '_', '', [rfReplaceAll]);
+    CEP := Trim(CEP);
+
+    if Trim(meCPF.Text) = '' then
+      raise Exception.Create('Informe o CPF');
+
+    if not(rbMasculino.Checked or rbFeminino.Checked) then
+      raise Exception.Create('Informe o sexo');
+
+    if Trim(lbeTelefone.Text) = '' then
+      raise Exception.Create('Informe o telefone');
+
+    if rbMasculino.Checked then
+      sexo := 'M'
+    else
+      sexo := 'F';
+
+    if Trim(meCEP.Text) = '' then
+      raise Exception.Create('Informe o CEP');
+
+    if Trim(lbeLogradouro.Text) = '' then
+      raise Exception.Create('Informe o logradouro');
+
+    if Trim(lbeBairro.Text) = '' then
+      raise Exception.Create('Informe o bairro');
+
+    if Trim(lbeCidade.Text) = '' then
+      raise Exception.Create('Informe a cidade');
+
+    if Trim(cbUF.Text) = '' then
+      raise Exception.Create('Informe a UF');
+
+    if not ModoEdicao then
+    begin
+      if DataModule1.CPFExiste(CPF) then
+        raise Exception.Create('Esse CPF já pertence a um cliente cadastrado!');
+
+      DataModule1.CadastrarCliente(
+        lbeNome.Text,
+        CPF,
+        lbeTelefone.Text,
+        dtpNascimento.Date,
+        sexo,
+        meCEP.Text,
+        lbeLogradouro.Text,
+        lbeNumero.Text,
+        lbeComplemento.Text,
+        lbeBairro.Text,
+        lbeCidade.Text,
+        cbUF.Text
+      );
+
+      ShowMessage('Cliente cadastrado com sucesso!');
+    end
+    else
+    begin
+      DataModule1.AlterarCliente(
+        CodigoCliente,
+        lbeNome.Text,
+        lbeTelefone.Text,
+        dtpNascimento.Date,
+        sexo,
+        meCEP.Text,
+        lbeLogradouro.Text,
+        lbeNumero.Text,
+        lbeComplemento.Text,
+        lbeBairro.Text,
+        lbeCidade.Text,
+        cbUF.Text
+      );
+
+      ShowMessage('Cliente atualizado com sucesso!');
+    end;
+
+    LimparCampos;
+    ModalResult := mrOk;
+
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
+  end;
+end;
+
+procedure TfrmCadastrarCliente.meCEPEnter(Sender: TObject);
+begin
+  meCEP.SelStart := 0;
+end;
+
+procedure TfrmCadastrarCliente.meCPFEnter(Sender: TObject);
+begin
+  meCPF.SelStart := 0;
+end;
+
+end.

@@ -25,7 +25,7 @@ object frmClientes: TfrmClientes
     Color = 8276224
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1005
+    ExplicitWidth = 1162
     object btnAdicionarCliente: TBitBtn
       Left = 0
       Top = 0
@@ -33,6 +33,7 @@ object frmClientes: TfrmClientes
       Height = 40
       Caption = 'Novo'
       TabOrder = 0
+      OnClick = btnAdicionarClienteClick
     end
     object btnEditarCliente: TBitBtn
       Left = 80
@@ -41,12 +42,13 @@ object frmClientes: TfrmClientes
       Height = 40
       Caption = 'Editar'
       TabOrder = 1
+      OnClick = btnEditarClienteClick
     end
     object searchCliente: TSearchBox
       Left = 450
       Top = 10
       Width = 264
-      Height = 24
+      Height = 23
       TabOrder = 2
       TextHint = 'Busca por Nome ou CPF'
       OnChange = searchClienteChange
@@ -66,5 +68,6 @@ object frmClientes: TfrmClientes
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnDblClick = DBGridClientesDblClick
   end
 end
