@@ -98,7 +98,7 @@ object Form1: TForm1
       Color = clWhite
       ParentColor = False
       TabOrder = 0
-      ExplicitWidth = 508
+      ExplicitWidth = 1008
       ExplicitHeight = 325
     end
   end
@@ -107,7 +107,14 @@ object Form1: TForm1
     Top = 312
     object Clientes1: TMenuItem
       Caption = 'Clientes'
-      OnClick = Clientes1Click
+      object Listagem1: TMenuItem
+        Caption = 'Listagem'
+        OnClick = Listagem1Click
+      end
+      object Listagem2: TMenuItem
+        Caption = 'Cadastro'
+        OnClick = Listagem2Click
+      end
     end
     object Servios1: TMenuItem
       Caption = 'Servi'#231'os'

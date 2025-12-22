@@ -13,7 +13,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
   Font.Style = []
   Position = poMainFormCenter
   TextHeight = 15
-  object GroupBox1: TGroupBox
+  object gbDadosPessoais: TGroupBox
     Left = 0
     Top = 0
     Width = 496
@@ -29,7 +29,21 @@ object frmCadastrarCliente: TfrmCadastrarCliente
     TabOrder = 0
     ExplicitWidth = 494
     ExplicitHeight = 329
-    object LabeledEdit1: TLabeledEdit
+    object lbCPF: TLabel
+      Left = 45
+      Top = 125
+      Width = 21
+      Height = 17
+      Caption = 'CPF'
+    end
+    object Label1: TLabel
+      Left = 332
+      Top = 65
+      Width = 119
+      Height = 17
+      Caption = 'Data de Nascimento'
+    end
+    object lbeNome: TLabeledEdit
       Left = 45
       Top = 85
       Width = 268
@@ -47,23 +61,27 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Text = ''
       TextHint = 'Digite o nome do cliente...'
     end
-    object MaskEdit1: TMaskEdit
+    object meCPF: TMaskEdit
       Left = 45
       Top = 146
-      Width = 201
+      Width = 220
       Height = 25
+      EditMask = '999.999.999-99;1'
+      MaxLength = 14
       TabOrder = 1
-      Text = 'MaskEdit1'
+      Text = '   .   .   -  '
+      TextHint = '000.000.000-00'
+      OnEnter = meCPFEnter
     end
-    object RadioGroup1: TRadioGroup
-      Left = 264
-      Top = 132
+    object rgSexo: TRadioGroup
+      Left = 280
+      Top = 140
       Width = 171
-      Height = 100
+      Height = 85
       Caption = 'Sexo'
       TabOrder = 2
     end
-    object RadioButton1: TRadioButton
+    object rbMasculino: TRadioButton
       Left = 288
       Top = 162
       Width = 81
@@ -71,7 +89,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Caption = 'Masculino'
       TabOrder = 3
     end
-    object RadioButton2: TRadioButton
+    object rbFeminino: TRadioButton
       Left = 288
       Top = 195
       Width = 73
@@ -79,19 +97,19 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       Caption = 'Feminino'
       TabOrder = 4
     end
-    object DateTimePicker1: TDateTimePicker
+    object dtpNascimento: TDateTimePicker
       Left = 332
       Top = 85
-      Width = 103
+      Width = 119
       Height = 25
       Date = 46008.000000000000000000
       Time = 0.000646967593638692
       TabOrder = 5
     end
-    object LabeledEdit2: TLabeledEdit
+    object lbeTelefone: TLabeledEdit
       Left = 45
       Top = 200
-      Width = 201
+      Width = 220
       Height = 25
       EditLabel.Width = 49
       EditLabel.Height = 17
@@ -101,7 +119,7 @@ object frmCadastrarCliente: TfrmCadastrarCliente
       TextHint = '(99) 99999-9999'
     end
   end
-  object GroupBox2: TGroupBox
+  object gbEndereco: TGroupBox
     Left = 496
     Top = 0
     Width = 472
@@ -111,80 +129,125 @@ object frmCadastrarCliente: TfrmCadastrarCliente
     TabOrder = 1
     ExplicitLeft = 494
     ExplicitHeight = 329
-    object LabeledEdit6: TLabeledEdit
+    object lbCEP: TLabel
+      Left = 45
+      Top = 65
+      Width = 21
+      Height = 15
+      Caption = 'CEP'
+    end
+    object Label2: TLabel
+      Left = 312
+      Top = 127
+      Width = 14
+      Height = 15
+      Caption = 'UF'
+    end
+    object lbeLogradouro: TLabeledEdit
       Left = 45
       Top = 198
       Width = 236
       Height = 23
-      EditLabel.Width = 31
+      EditLabel.Width = 62
       EditLabel.Height = 15
-      EditLabel.Caption = 'Bairro'
+      EditLabel.Caption = 'Logradouro'
       TabOrder = 0
       Text = ''
     end
-    object LabeledEdit8: TLabeledEdit
+    object lbeNumero: TLabeledEdit
       Left = 312
       Top = 200
-      Width = 125
-      Height = 23
-      EditLabel.Width = 77
-      EditLabel.Height = 15
-      EditLabel.Caption = 'Complemento'
-      TabOrder = 1
-      Text = ''
-    end
-    object LabeledEdit5: TLabeledEdit
-      Left = 45
-      Top = 248
-      Width = 236
-      Height = 23
-      EditLabel.Width = 68
-      EditLabel.Height = 15
-      EditLabel.Caption = 'Rua/Avenida'
-      TabOrder = 2
-      Text = ''
-    end
-    object ComboBox1: TComboBox
-      Left = 312
-      Top = 146
-      Width = 125
-      Height = 23
-      TabOrder = 3
-      Text = 'ComboBox1'
-      TextHint = 'Selecione'
-    end
-    object LabeledEdit9: TLabeledEdit
-      Left = 312
-      Top = 248
       Width = 125
       Height = 23
       EditLabel.Width = 44
       EditLabel.Height = 15
       EditLabel.Caption = 'N'#250'mero'
+      TabOrder = 1
+      Text = ''
+    end
+    object lbeBairro: TLabeledEdit
+      Left = 45
+      Top = 248
+      Width = 236
+      Height = 23
+      EditLabel.Width = 31
+      EditLabel.Height = 15
+      EditLabel.Caption = 'Bairro'
+      TabOrder = 2
+      Text = ''
+    end
+    object cbUF: TComboBox
+      Left = 312
+      Top = 146
+      Width = 125
+      Height = 23
+      Style = csDropDownList
+      TabOrder = 3
+      TextHint = 'Selecione'
+      Items.Strings = (
+        'AC'
+        'AL'
+        'AP'
+        'AM'
+        'BA'
+        'CE'
+        'DF'
+        'ES'
+        'GO'
+        'MA'
+        'MT'
+        'MS'
+        'MG'
+        'PA'
+        'PB'
+        'PR'
+        'PE'
+        'PI'
+        'RJ'
+        'RN'
+        'RS'
+        'RO'
+        'RR'
+        'SC'
+        'SP'
+        'SE'
+        'TO')
+    end
+    object lbeComplemento: TLabeledEdit
+      Left = 312
+      Top = 248
+      Width = 125
+      Height = 23
+      EditLabel.Width = 77
+      EditLabel.Height = 15
+      EditLabel.Caption = 'Complemento'
       TabOrder = 4
       Text = ''
     end
-    object MaskEdit2: TMaskEdit
+    object meCEP: TMaskEdit
       Left = 45
       Top = 85
-      Width = 201
+      Width = 200
       Height = 23
+      EditMask = '99.999-000;1'
+      MaxLength = 10
       TabOrder = 5
-      Text = 'MaskEdit1'
+      Text = '  .   -   '
+      OnEnter = meCEPEnter
+    end
+    object lbeCidade: TLabeledEdit
+      Left = 45
+      Top = 146
+      Width = 236
+      Height = 23
+      EditLabel.Width = 37
+      EditLabel.Height = 15
+      EditLabel.Caption = 'Cidade'
+      TabOrder = 6
+      Text = ''
     end
   end
-  object LabeledEdit4: TLabeledEdit
-    Left = 541
-    Top = 146
-    Width = 236
-    Height = 23
-    EditLabel.Width = 37
-    EditLabel.Height = 15
-    EditLabel.Caption = 'Cidade'
-    TabOrder = 2
-    Text = ''
-  end
-  object Panel1: TPanel
+  object btnSalvar: TPanel
     Left = 0
     Top = 337
     Width = 968
@@ -194,7 +257,8 @@ object frmCadastrarCliente: TfrmCadastrarCliente
     Caption = 'Salvar'
     Color = 16762259
     ParentBackground = False
-    TabOrder = 3
+    TabOrder = 2
+    OnClick = btnSalvarClick
     ExplicitTop = 329
     ExplicitWidth = 966
   end

@@ -55,8 +55,38 @@ object DataModule1: TDataModule1
   end
   object qryClientes: TFDQuery
     Connection = FDConnection
+    SQL.Strings = (
+      'SELECT'
+      '    C.CODIGO,'
+      '    C.NOME,'
+      '    C.CPF,'
+      '    C.TELEFONE,'
+      '    DATE_FORMAT(C.DNASC, '#39'%d/%m/%Y'#39') AS DATA_NASCIMENTO,'
+      '    C.SEXO,'
+      '    C.LOGRADOURO,'
+      '    C.NUMERO,'
+      '    C.COMPLEMENTO,'
+      '    C.BAIRRO,'
+      '    C.CIDADE,'
+      '    C.ESTADO,'
+      '    CASE C.ATIVO'
+      '        WHEN 1 THEN '#39'Ativo'#39
+      '        ELSE '#39'Inativo'#39
+      '    END AS STATUS'
+      'FROM TB_CLIENTES C'
+      'WHERE C.ATIVO = 1'
+      '  AND ('
+      '        C.NOME LIKE :PESQUISA'
+      '        OR C.CPF  LIKE :PESQUISA'
+      '      )'
+      'ORDER BY C.NOME;')
     Left = 80
-    Top = 304
+    Top = 320
+    ParamData = <
+      item
+        Name = 'PESQUISA'
+        ParamType = ptInput
+      end>
   end
   object qryServicos: TFDQuery
     Connection = FDConnection
@@ -115,5 +145,93 @@ object DataModule1: TDataModule1
     DataSet = qryServicos
     Left = 432
     Top = 384
+  end
+  object dsClientes: TDataSource
+    DataSet = qryClientes
+    Left = 440
+    Top = 312
+  end
+  object qryCadastrarCliente: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'INSERT INTO TB_CLIENTES ('
+      '    NOME,'
+      '    CPF,'
+      '    TELEFONE,'
+      '    DNASC,'
+      '    SEXO,'
+      '    LOGRADOURO,'
+      '    NUMERO,'
+      '    COMPLEMENTO,'
+      '    BAIRRO,'
+      '    CIDADE,'
+      '    ESTADO,'
+      '    ATIVO'
+      ') VALUES ('
+      '    :NOME,'
+      '    :CPF,'
+      '    :TELEFONE,'
+      '    :DNASC,'
+      '    :SEXO,'
+      '    :LOGRADOURO,'
+      '    :NUMERO,'
+      '    :COMPLEMENTO,'
+      '    :BAIRRO,'
+      '    :CIDADE,'
+      '    :ESTADO,'
+      '    1'
+      ');')
+    Left = 176
+    Top = 312
+    ParamData = <
+      item
+        Name = 'NOME'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CPF'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TELEFONE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'DNASC'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SEXO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end
+      item
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end
+      item
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end>
+  end
+  object qryAlterarCliente: TFDQuery
+    Connection = FDConnection
+    Left = 288
+    Top = 312
   end
 end

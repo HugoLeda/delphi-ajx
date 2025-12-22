@@ -130,7 +130,7 @@
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="forms\U_Clientes.pas">
+        <DCCReference Include="forms\U_CadastrarCliente.pas">
             <Form>frmCadastrarCliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -150,6 +150,10 @@
         </DCCReference>
         <DCCReference Include="forms\U_CadastrarServico.pas">
             <Form>frmCadastrarServico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="forms\U_Clientes.pas">
+            <Form>frmClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

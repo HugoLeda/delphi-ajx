@@ -22,6 +22,9 @@ type
     qryCadastrarServico: TFDQuery;
     qryUpdateServico: TFDQuery;
     dsServicos: TDataSource;
+    dsClientes: TDataSource;
+    qryCadastrarCliente: TFDQuery;
+    qryAlterarCliente: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -32,7 +35,13 @@ type
     procedure AbrirServicos;
     procedure CadastrarServico(const Nome, Descricao: string);
     procedure AtualizarServico(ACodigo: Integer; const ANome, ADescricao: string);
-
+    procedure AbrirClientes(const Pesquisa: string);
+    procedure CadastrarCliente(
+      const Nome, CPF, Telefone: string;
+      const DtNasc: TDate;
+      const Sexo: Char;
+      const Logradouro, Numero, Complemento, Bairro, Cidade, Estado: string
+    );
   end;
 
 var
@@ -43,6 +52,30 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+procedure TDataModule1.CadastrarCliente(
+  const Nome: string; const CPF: string; const Telefone: string;
+  const DtNasc: TDate; const Sexo: Char; const Logradouro: string;
+  const Numero: string; const Complemento: string; const Bairro: string;
+  const Cidade: string; const Estado: string);
+begin
+  qryCadastrarCliente.Close;
+
+  qryCadastrarCliente.ParamByName('NOME').AsString := Nome;
+  qryCadastrarCliente.ParamByName('CPF').AsString := CPF;
+  qryCadastrarCliente.ParamByName('TELEFONE').AsString := Telefone;
+  qryCadastrarCliente.ParamByName('DNASC').AsDate := DtNasc;
+  qryCadastrarCliente.ParamByName('SEXO').AsString := Sexo;
+  qryCadastrarCliente.ParamByName('LOGRADOURO').AsString := Logradouro;
+  qryCadastrarCliente.ParamByName('NUMERO').AsString := Numero;
+  qryCadastrarCliente.ParamByName('COMPLEMENTO').AsString := Complemento;
+  qryCadastrarCliente.ParamByName('BAIRRO').AsString := Bairro;
+  qryCadastrarCliente.ParamByName('CIDADE').AsString := Cidade;
+  qryCadastrarCliente.ParamByName('ESTADO').AsString := Estado;
+
+  qryCadastrarCliente.ExecSQL;
+end;
+
+
 procedure TDataModule1.CadastrarServico(const Nome, Descricao: string);
 begin
   qryCadastrarServico.Close;
@@ -94,6 +127,18 @@ procedure TDataModule1.AbrirServicos;
 begin
   qryServicos.Close;
   qryServicos.Open;
+end;
+
+procedure TDataModule1.AbrirClientes(const Pesquisa: string);
+begin
+  qryClientes.Close;
+
+  if Pesquisa.Trim = '' then
+    qryClientes.ParamByName('PESQUISA').AsString := '%'
+  else
+    qryClientes.ParamByName('PESQUISA').AsString := '%' + Pesquisa + '%';
+
+  qryClientes.Open;
 end;
 
 procedure TDataModule1.DataModuleCreate(Sender: TObject);
