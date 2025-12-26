@@ -35,7 +35,7 @@ object Form1: TForm1
       Align = alTop
       Alignment = taCenter
       Caption = 'Clientes'
-      Color = clBtnFace
+      Color = 8276224
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -47,17 +47,18 @@ object Form1: TForm1
       ExplicitTop = 16
       ExplicitWidth = 77
     end
-    object SearchBox1: TSearchBox
-      Left = 240
+    object sbFiltrarCards: TSearchBox
+      Left = 40
       Top = 70
       Width = 450
       Height = 23
       BorderStyle = bsNone
       TabOrder = 0
-      Text = 'SearchBox1'
+      TextHint = 'Buscar por nome'
+      OnChange = sbFiltrarCardsChange
     end
     object Button1: TButton
-      Left = 700
+      Left = 508
       Top = 69
       Width = 150
       Height = 25
@@ -73,9 +74,26 @@ object Form1: TForm1
     Height = 98
     Align = alBottom
     BevelOuter = bvNone
+    ParentBackground = False
     TabOrder = 1
     ExplicitTop = 456
     ExplicitWidth = 1010
+    object Panel5: TPanel
+      Left = 600
+      Top = 0
+      Width = 412
+      Height = 98
+      Align = alRight
+      BorderStyle = bsSingle
+      Caption = 'Panel5'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
   end
   object Panel3: TPanel
     Left = 0

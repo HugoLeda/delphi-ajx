@@ -43,8 +43,6 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 4
-      ExplicitTop = 16
       ExplicitWidth = 77
     end
     object sbFiltrarCards: TSearchBox
@@ -76,16 +74,16 @@ object Form1: TForm1
     BevelOuter = bvNone
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 456
+    ExplicitTop = 458
     ExplicitWidth = 1010
-    object Panel5: TPanel
+    object pnTotalizadores: TPanel
       Left = 600
       Top = 0
       Width = 412
       Height = 98
       Align = alRight
       BorderStyle = bsSingle
-      Caption = 'Panel5'
+      Caption = 'pnTotalizadores'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -19
@@ -93,6 +91,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      ExplicitLeft = 598
     end
   end
   object Panel3: TPanel
@@ -111,7 +110,7 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 2
     ExplicitWidth = 1010
-    ExplicitHeight = 327
+    ExplicitHeight = 329
     object ScrollBox1: TScrollBox
       Left = 0
       Top = 0
@@ -122,10 +121,8 @@ object Form1: TForm1
       Color = clWhite
       ParentColor = False
       TabOrder = 0
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 1008
-      ExplicitHeight = 325
+      ExplicitWidth = 1010
+      ExplicitHeight = 329
       object FlowPanel1: TFlowPanel
         Left = 0
         Top = 0
@@ -135,8 +132,7 @@ object Form1: TForm1
         AutoSize = True
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 100
-        ExplicitWidth = 800
+        ExplicitWidth = 985
       end
     end
   end

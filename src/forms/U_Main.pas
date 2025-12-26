@@ -22,7 +22,7 @@ type
     Listagem1: TMenuItem;
     Listagem2: TMenuItem;
     FlowPanel1: TFlowPanel;
-    Panel5: TPanel;
+    pnTotalizadores: TPanel;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Servios1Click(Sender: TObject);

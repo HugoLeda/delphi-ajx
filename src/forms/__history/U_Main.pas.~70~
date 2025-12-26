@@ -16,7 +16,7 @@ type
     MainMenu1: TMainMenu;
     Clientes1: TMenuItem;
     Servios1: TMenuItem;
-    SearchBox1: TSearchBox;
+    sbFiltrarCards: TSearchBox;
     Button1: TButton;
     ScrollBox1: TScrollBox;
     Listagem1: TMenuItem;
@@ -29,6 +29,7 @@ type
     procedure Listagem2Click(Sender: TObject);
     procedure Listagem1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure sbFiltrarCardsChange(Sender: TObject);
   private
     { Private declarations }
     procedure GerarCards;
@@ -78,7 +79,7 @@ begin
   while FlowPanel1.ControlCount > 0 do
     FlowPanel1.Controls[0].Free;
 
-  DataModule1.AbrirCardClientes;
+  DataModule1.AbrirCardClientes(sbFiltrarCards.Text);
 
   DataModule1.qryCardClientes.First;
 
@@ -93,6 +94,7 @@ begin
 
     i := i + 1;
     Card.Name := 'CardCliente_' + i.ToString;
+    Card.CodigoCliente := DataModule1.qryCardClientes.FieldByName('CLIENTE_ID').AsInteger;
 
     Card.Align := alTop;
     Card.AlignWithMargins := True;
@@ -114,6 +116,10 @@ begin
     Card.LbEnderecoCliente.Caption := endereco;
     DataModule1.qryCardClientes.Next;
   end;
+
+  Panel5.Caption :=
+    Format('Total de Registros: %d             Valor: R$ %s',
+      [QtdCards, FormatFloat(',0.00', ValorTotal)]);
 end;
 
 
@@ -125,6 +131,11 @@ end;
 procedure TForm1.Listagem2Click(Sender: TObject);
 begin
   frmCadastrarCliente.Show;
+end;
+
+procedure TForm1.sbFiltrarCardsChange(Sender: TObject);
+begin
+  GerarCards;
 end;
 
 procedure TForm1.Servios1Click(Sender: TObject);
